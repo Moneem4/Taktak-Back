@@ -1,0 +1,49 @@
+enum PostType {
+	VIDEO
+	IMAGE
+	TEXT
+}
+
+input CreatePostInput {
+	userId: ID!
+	postType: PostType!
+	title: String!
+	content: String!
+	restaurantName: String!
+	location: String!
+}
+
+input UpdatePostInput {
+	postType: PostType
+	title: String
+	evaluation: Int
+	content: String
+}
+
+type Post {
+	_id: ID!
+	userId: ID!
+	postType: PostType!
+	title: String!
+	content: String!
+	evaluation: Int
+	restaurantName: String!
+	location: String!
+	likes: [PostLike]
+	accesses: [PostAccess]
+	comments: [PostComment]
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String!
+}
+
+type Query {
+	posts: [Post]
+	postById(_id: ID!): Post
+}
+
+type Mutation {
+	createPost(input: CreatePostInput!): Post
+	updatePost(_id: ID!, input: UpdatePostInput): Post
+	deletePost(_id: ID!): Boolean
+}

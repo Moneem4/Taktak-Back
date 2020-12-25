@@ -1,0 +1,28 @@
+input CreateMessageInput {
+	text: String!
+	conversationId: ID!
+	createdBy: ID!
+}
+
+type Message {
+	_id: ID!
+	text: String
+	conversationId: ID!
+	createdBy: User
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+}
+
+type Query {
+	messages(conversationId: ID!): [Message]
+}
+
+type Mutation {
+	sendMessage(input: CreateMessageInput!): Message
+	deleteMessage(_id: ID!): Boolean
+}
+
+type Subscription {
+	newMessages(conversationId: ID!): Room
+}

@@ -1,0 +1,44 @@
+input CreateEatWithStrangerInput {
+	name: String!
+    description: String!
+	price: Float!
+    quantity:Float!
+     strangerId:ID!
+     address:String!
+    createdAt: String
+    deletedAt:String
+	updatedAt: String
+}
+input UpdateEatWithStrangerInput {
+	name: String
+	price: Float!
+    quantity:Float!
+    description: String!
+}
+type EatWithStranger {
+	_id: ID!	
+    strangerId:ID!
+    address:String!
+	name: String!
+    price:Float!
+	description: String!
+    strangerName: String!
+    restaurantId: ID!
+	createdAt: String!
+    deletedAt:String!
+	updatedAt: String!
+   
+}
+
+type Query {
+	getEatWithStrangers: [EatWithStranger]
+	getEatWithStrangerById(_id: ID!): EatWithStranger
+}
+
+type Mutation {
+	createEatWithStranger(input: CreateEatWithStrangerInput!): EatWithStranger
+    updateEatWithStranger(_id: String, input: UpdateEatWithStrangerInput): EatWithStranger
+	deleteEatWithStranger(_id: ID!):Boolean!
+	
+   
+}

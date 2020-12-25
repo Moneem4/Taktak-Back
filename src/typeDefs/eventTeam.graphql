@@ -1,0 +1,42 @@
+enum Visibility {
+	PRIVATE
+	PUBLIC
+}
+
+enum State {
+	DONE
+	PENDING
+}
+input CreateEventTeamInput {
+  eventId: ID!
+  role:String!
+  description:String!
+  deletedAt:String
+    updatedAt: String
+}
+input UpdateEventTeamInput {
+	role:String!
+  description:String!
+}
+
+type EventTeam {
+	_id: ID!
+	eventId: ID!
+	Team:[ID!]
+	role:String!
+  description:String!
+	createdAt: String!
+	deletedAt:String
+    updatedAt: String
+}
+
+type Query {
+	getEventTeams: [EventTeam]
+	eventTeamsByEvent(eventId: ID!): [EventTeam]
+	getEventTeamById(_id: ID!): EventTeam
+}
+type Mutation {
+	createEventTeam(input: CreateEventTeamInput!): EventTeam
+	updateEventTeam(_id: ID!, input: UpdateEventTeamInput!): EventTeam
+	deleteEventTeam(_id: ID!): Boolean
+}

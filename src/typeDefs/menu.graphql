@@ -1,0 +1,35 @@
+input CreateMenuInput {
+	name: String!
+    contenu: String!
+    createdAt: String
+	description: String !
+     deletedAt:String
+     updatedAt: String
+}
+input UpdateMenuInput {
+	name: String !
+    contenu: String !
+	
+}
+type Menu {
+	_id: ID!
+	name: String
+    contenu: String !
+    description: String !
+	createdAt: String!
+    deletedAt:String !
+	updatedAt: String!
+	products: [Product]
+    ratings:[Rating]
+}
+
+type Query {
+	getMenus: [Menu]
+	getMenuById(_id: ID!): Menu
+}
+
+type Mutation {
+	createMenu(input: CreateMenuInput!): Menu
+     updateMenu(_id: String, input: UpdateMenuInput): Menu
+	deleteMenu(_id: ID!):Boolean!
+}

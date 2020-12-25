@@ -1,0 +1,31 @@
+input CreateConversationInput {
+	userId: ID!
+	participantId: ID!
+}
+
+input UpdateConversationInput {
+	lastMessageId: ID!
+}
+
+type Conversation {
+	_id: ID!
+	userId: ID!
+	participantId: ID!
+	name: String
+	lastMessage: Message
+	messages: [Message]
+	isBlocked: Boolean!
+	createdAt: String!	
+	deletedAt: String!
+}
+
+type Query {
+	conversations: [Conversation]
+	conversationById(_id: ID!): Conversation
+	conversationsByUserId(userId: ID!): [Conversation]
+}
+
+type Mutation {
+	createConversation(input: CreateConversationInput!): Conversation
+	deleteConversation(_id: ID!): Boolean
+}

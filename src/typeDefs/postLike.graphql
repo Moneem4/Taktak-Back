@@ -1,0 +1,23 @@
+input CreatePostLikeInput {
+	userId: ID!
+	postId: ID!
+}
+
+type PostLike {
+	_id: ID!
+	userId: ID!
+	postId: ID!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
+}
+
+type Query {
+	postLikes(postId: ID!): [PostLike]
+	postLikeById(_id: ID!): PostLike
+}
+
+type Mutation {
+	createPostLike(input: CreatePostLikeInput!): PostLike
+	deletePostLike(_id: ID!): Boolean
+}

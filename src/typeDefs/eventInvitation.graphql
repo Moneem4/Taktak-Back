@@ -1,0 +1,34 @@
+
+input CreateEventInvitationInput {
+	event: ID!
+	user: ID!
+	deletedAt:String
+	updatedAt: String
+}
+
+input UpdateEventInvitationInput {
+	event: ID
+	user: ID
+}
+
+type EventInvitation {
+	_id: ID!
+	event: ID!
+	user: ID!
+	createdAt: String!
+	updatedAt: String
+	deletedAt:String
+}
+
+type Query {
+	getEventInvitations: [EventInvitation]
+	getEventInvitationById(_id: ID!): EventInvitation
+	getEventInvitationEvent(eventId: ID!): [EventInvitation]
+
+}
+
+type Mutation {
+	createEventInvitation(input: CreateEventInvitationInput!): EventInvitation
+	updateEventInvitation(_id: ID!input: UpdateEventInvitationInput): EventInvitation
+	deleteEventInvitation(_id: ID!): Boolean
+}

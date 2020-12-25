@@ -1,0 +1,30 @@
+input CreateServiceContributerInput {
+	contract: ID!
+	deletedAt:String
+	updatedAt: String
+}
+input UpdateServiceContributerContractInput {
+	contract: ID!
+	updatedAt: String
+	deletedAt:String
+}
+type ServiceContributerContract {
+	_id: ID!
+	contract: ID!
+	createdAt: String!
+	deletedAt:String
+	updatedAt: String
+}
+
+type Query {
+	getServiceContributersContracts: [ServiceContributerContract]
+	getServiceContributerContractById(_id: ID!): ServiceContributerContract
+   getServiceContributerByContract(contractId: ID!): [ServiceContributerContract]
+}
+
+type Mutation {
+	CreateServiceContributerContract(input: CreateServiceContributerInput): ServiceContributerContract
+    updateServiceContributerContract(_id: ID!, input: UpdateServiceContributerContractInput): ServiceContributerContract
+	 deleteServiceContributerContract(_id: ID!): Boolean
+    deleteServiceContributerByContract(contractId: ID!): Boolean
+}

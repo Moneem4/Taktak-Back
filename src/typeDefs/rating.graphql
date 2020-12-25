@@ -1,0 +1,38 @@
+input CreateRatingInput {
+	name: String!
+    userId: ID!
+    createdAt: String
+    deletedAt:String
+    updatedAt: String
+    offer:ID!
+    menu:ID!
+    product:ID!
+
+    
+}
+input UpdateRatingInput {
+	name: String !
+    contenu: String !
+}
+type Rating {
+	_id: ID!
+	name: String
+    contenu: String !
+    description: String !
+	createdAt: String!
+    deletedAt:String !
+	updatedAt: String!
+	products: [Product]
+    ratings:[Rating]
+}
+
+type Query {
+	getRatings: [Rating]
+	getRatingById(_id: ID!): Rating
+}
+
+type Mutation {
+	createRating(input: CreateRatingInput!): Rating
+     updateRating(_id: String, input: UpdateRatingInput): Rating
+	deleteRating(_id: ID!):Boolean!
+}

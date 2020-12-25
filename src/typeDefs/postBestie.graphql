@@ -1,0 +1,23 @@
+input CreatePostBestieInput {
+	postId: ID!
+	userId: ID!
+}
+
+type PostBestie {
+	_id: ID!
+	userId: String!
+	postId: String!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
+}
+
+type Query {
+	postBesties(userId: ID!): [PostBestie]
+	postBestieById(_id: ID!): PostBestie
+}
+
+type Mutation {
+	createPostBestie(input: CreatePostBestieInput!): PostBestie
+	deletePostBestie(_id: ID!): Boolean
+}

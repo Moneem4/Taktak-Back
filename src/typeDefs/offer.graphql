@@ -1,0 +1,43 @@
+  enum Statetype {
+	PROGRESS,
+	PENDING,
+	DONE
+}
+ 
+ input CreateOfferInput {
+	name: String!
+    contenu: String!
+    createdAt: String
+     deletedAt:String
+     updatedAt: String
+}
+input UpdateOfferInput {
+	name: String !
+    contenu: String !
+}
+type Offer {
+	_id:ID!
+	name:String
+    percentage:Float!
+    quantity:Float! 
+   state: Statetype!
+   description:String!
+	createdAt:String!
+    deletedAt:String !
+	updatedAt:String!
+    startDate:String!
+    expirationDate:String!
+	products:[Product]
+    ratings:[Rating]
+}
+
+type Query {
+	getOffers:[Offer]
+	getOfferById(_id:ID!):Offer
+}
+
+type Mutation {
+	createOffer(input:CreateOfferInput!):Offer
+    updateOffer(_id:String,input:UpdateOfferInput):Offer
+	deleteOffer(_id:ID!):Boolean!
+}
