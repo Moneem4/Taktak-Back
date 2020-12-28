@@ -10,8 +10,10 @@ import { ProductMCS } from './productMCS.service'
 				name: 'PRODUCT-SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakProduct'],
-					queue: 'taktakProduct',
+					urls: [
+						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_PRODUCT_VHOST}`
+					],
+					queue: `${process.env.RABBITMQ_MCS_PRODUCT_QUEUE}`,
 					noAck: true,
 					queueOptions: {
 						durable: true

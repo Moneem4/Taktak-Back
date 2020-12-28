@@ -10,9 +10,7 @@ import { ProductMCS } from '../config/microservice/product/productMCS.service'
 
 @Resolver('Category')
 export class CategoryResolver {
-	constructor(private readonly productService: ProductMCS) {
-		console.log('Category.resolver')
-	}
+	constructor(private readonly productService: ProductMCS) {}
 
 	@Query()
 	async getCategories() {
