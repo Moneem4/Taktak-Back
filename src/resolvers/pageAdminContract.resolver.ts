@@ -15,12 +15,12 @@ export class ServicePageAdminContractResolver {
 
 	@Query()
 	async getPageAdminContracts() {
-		// Logger.log(`function:getServicePageAdminContractComment, input: ${ServicePageAdminContractId}`);
+		// console.log(`function:getServicePageAdminContractComment, input: ${ServicePageAdminContractId}`);
 		const data = await this.contractService.send(
 			'getServicePageAdminContracts',
 			{}
 		)
-		// Logger.log(data);
+		// console.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -34,10 +34,10 @@ export class ServicePageAdminContractResolver {
 			'getServicePageAdminContractById',
 			_id
 		)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
-			Logger.log(`data vide:`)
+			console.log(`data vide:`)
 			throw new ApolloError(
 				'getServicePageAdminContractById déja supprimé +++++'
 			)
@@ -53,8 +53,8 @@ export class ServicePageAdminContractResolver {
 			'getServicePageAdminContractByContract',
 			contractId
 		)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${contractId}`)
+		console.log('data: ', data)
+		console.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -62,13 +62,13 @@ export class ServicePageAdminContractResolver {
 	async CreatePageAdminContract(
 		@Args('input') input: CreatePageAdminContractInput
 	): Promise<PageAdminContract> {
-		// Logger.log(`function:createServicePageAdminContract`);
-		Logger.log(input)
+		// console.log(`function:createServicePageAdminContract`);
+		console.log(input)
 		const data = await this.contractService.send(
 			'CreatePageAdminContract',
 			input
 		)
-		Logger.log(`function:CreatePageAdminContract, res: ${data}`)
+		console.log(`function:CreatePageAdminContract, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -89,7 +89,7 @@ export class ServicePageAdminContractResolver {
 
 	@Mutation(() => Boolean)
 	async deletePageAdminContract(@Args('_id') _id: string): Promise<boolean> {
-		Logger.log(`function:deletePageAdminContract, input: ${_id}`)
+		console.log(`function:deletePageAdminContract, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.contractService.send('deletePageAdminContract', _id)
 		console.log('++++++', data)

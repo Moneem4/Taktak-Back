@@ -1,0 +1,23 @@
+input CreatePostSharedInput {
+	postId: ID!
+	userId: ID!
+}
+
+type PostShared {
+	_id: ID!
+	userId: ID!
+	postId: ID!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
+}
+
+type Query {
+	postShared(userId: ID!): [PostShared]
+	postSharedById(_id: ID!): PostShared
+}
+
+type Mutation {
+	createPostShared(input: CreatePostSharedInput!): PostShared
+	deletePostShared(_id: ID!): Boolean
+}

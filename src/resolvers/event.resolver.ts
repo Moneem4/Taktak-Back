@@ -15,9 +15,9 @@ export class EventResolver {
 
 	@Query()
 	async getEvents() {
-		//Logger.log(`function:getEventComment, input: ${EventId}`);
+		//console.log(`function:getEventComment, input: ${EventId}`);
 		const data = await this.EventService.send('getEvents', {})
-		//Logger.log(data);
+		//console.log(data);
 		return data
 	}
 	//to check {Access null ...}
@@ -26,10 +26,10 @@ export class EventResolver {
 	@Query(() => Event)
 	async getEventById(@Args('_id') _id: string): Promise<Event> {
 		const data = await this.EventService.send('getEventById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
-			Logger.log(`data vide:`)
+			console.log(`data vide:`)
 			throw new ApolloError('event déja supprimé +++++')
 		} else return data
 	}
@@ -38,17 +38,17 @@ export class EventResolver {
 	@Query()
 	async getEventbyCreator(@Args('creatorId') creatorId: string) {
 		const data = await this.EventService.send('getEventbyCreator', creatorId)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${creatorId}`)
+		console.log('data: ', data)
+		console.log(`id : ${creatorId}`)
 
 		return data
 	}
 	@Mutation(() => Event)
 	async createEvent(@Args('input') input: CreateEventInput): Promise<Event> {
-		//Logger.log(`function:createEvent`);
-		Logger.log(input)
+		//console.log(`function:createEvent`);
+		console.log(input)
 		const data = await this.EventService.send('createEvent', input)
-		Logger.log(`function:createEvent, res: ${data}`)
+		console.log(`function:createEvent, res: ${data}`)
 		return data
 	}
 	//----------------------------------------------------------------------------------------------- finished
@@ -66,7 +66,7 @@ export class EventResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEvent(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteEvent, input: ${_id}`)
+		console.log(`function:deleteEvent, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.EventService.send('deleteEvent', _id)
 		console.log('++++++', data)

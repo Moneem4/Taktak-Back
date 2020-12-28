@@ -13,7 +13,7 @@ import { Logger } from '@nestjs/common'
  */
 export const timeout = () => {
 	const taskID = setTimeout(() => {
-		Logger.debug('Task completed', 'Timeout', false)
+		console.debug('Task completed', 'Timeout', false)
 	}, 1000)
 	// clearTimeout(taskID)
 }
@@ -30,7 +30,7 @@ export const timeout = () => {
  */
 export const interval = () => {
 	const intervalID = setInterval(() => {
-		Logger.debug('Task executed', 'Interval', false)
+		console.debug('Task executed', 'Interval', false)
 	}, 2000)
 	// clearInterval(intervalID)
 }
@@ -49,7 +49,7 @@ export const cron = () => {
 	const job = new CronJob({
 		cronTime: '0 0 12 * * MON-FRI',
 		onTick: () => {
-			Logger.debug('Cron job completed', 'Cron', false)
+			console.debug('Cron job completed', 'Cron', false)
 		},
 		start: false,
 		timeZone: 'Asia/Ho_Chi_Minh'

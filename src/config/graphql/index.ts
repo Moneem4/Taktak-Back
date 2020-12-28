@@ -122,7 +122,7 @@ export class GraphqlService implements GqlOptionsFactory {
 					{ ignore: [/_trusted$/, 'idontcare'] },
 					depths => {
 						if (depths[''] === GRAPHQL_DEPTH_LIMIT! - 1) {
-							Logger.warn(
+							console.warn(
 								`⚠️  You can only descend ${chalk
 									.hex(PRIMARY_COLOR!)
 									.bold(`${GRAPHQL_DEPTH_LIMIT!}`)} levels.`,
@@ -222,7 +222,7 @@ export class GraphqlService implements GqlOptionsFactory {
 				keepAlive: 1000,
 				onConnect: async (connectionParams, webSocket, context) => {
 					NODE_ENV !== 'production' &&
-						Logger.debug(`🔗  Connected to websocket`, 'GraphQL')
+						console.debug(`🔗  Connected to websocket`, 'GraphQL')
 
 					let currentUser
 
@@ -250,7 +250,7 @@ export class GraphqlService implements GqlOptionsFactory {
 				},
 				onDisconnect: async (webSocket, context) => {
 					NODE_ENV !== 'production' &&
-						Logger.error(`❌  Disconnected to websocket`, '', 'GraphQL', false)
+						console.error(`❌  Disconnected to websocket`, '', 'GraphQL', false)
 
 					const { initPromise } = context
 					const { currentUser } = await initPromise

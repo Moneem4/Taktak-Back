@@ -16,9 +16,9 @@ export class ServiceContributerResolver {
 
 	@Query()
 	async getServiceContributersContracts() {
-		//Logger.log(`function:getServiceContributerComment, input: ${ServiceContributerId}`);
+		//console.log(`function:getServiceContributerComment, input: ${ServiceContributerId}`);
 		const data = await this.ContractService.send('getServiceContributers', {})
-		//Logger.log(data);
+		//console.log(data);
 		return data
 	}
 	//to check {Access null ...}
@@ -32,10 +32,10 @@ export class ServiceContributerResolver {
 			'getServiceContributerById',
 			_id
 		)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
-			Logger.log(`data vide:`)
+			console.log(`data vide:`)
 			throw new ApolloError('getServiceContributerById déja supprimé +++++')
 		} else return data
 	}
@@ -49,8 +49,8 @@ export class ServiceContributerResolver {
 			'getServiceContributerByContract',
 			contractId
 		)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${contractId}`)
+		console.log('data: ', data)
+		console.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -58,13 +58,13 @@ export class ServiceContributerResolver {
 	async CreateServiceContributerContract(
 		@Args('input') input: CreateServiceContributerInput
 	): Promise<ServiceContributerContract> {
-		//Logger.log(`function:createServiceContributer`);
-		Logger.log(input)
+		//console.log(`function:createServiceContributer`);
+		console.log(input)
 		const data = await this.ContractService.send(
 			'CreateServiceContributerContract',
 			input
 		)
-		Logger.log(`function:CreateServiceContributer, res: ${data}`)
+		console.log(`function:CreateServiceContributer, res: ${data}`)
 		return data
 	}
 	//----------------------------------------------------------------------------------------------- finished
@@ -87,7 +87,7 @@ export class ServiceContributerResolver {
 	async deleteServiceContributerContract(
 		@Args('_id') _id: String
 	): Promise<boolean> {
-		Logger.log(`function:deleteServiceContributer, input: ${_id}`)
+		console.log(`function:deleteServiceContributer, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.ContractService.send(
 			'deleteServiceContributer',

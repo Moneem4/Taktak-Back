@@ -2,7 +2,7 @@ import { CacheModule, Module, HttpModule } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ScheduleModule } from '@nestjs/schedule'
-
+import { Transport, ClientsModule } from '@nestjs/microservices'
 // import { BullModule } from '@nestjs/bull'
 
 import {
@@ -32,7 +32,6 @@ import * as Resolvers from './resolvers'
 			useClass: CacheService
 		}),
 		HttpModule,
-
 		...Object.values(rabbitmqMicroservice)
 	],
 	controllers: [AppController],

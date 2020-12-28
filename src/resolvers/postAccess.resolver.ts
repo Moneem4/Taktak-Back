@@ -2,78 +2,64 @@ import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 
 import { PostAccess } from '@models'
 import {
-	CreateMbPostAccessInput,
-	UpdateMbPostAccessInput,
-	MbPost,
-	MbPostAccess
+	CreatePostAccessInput,
+	UpdatePostAccessInput
+	
+	
 } from '../generator/graphql.schema'
-import { ClientProxy } from '@nestjs/microservices'
 import { Inject, Logger } from '@nestjs/common'
 import { PostMCS } from '../config/microservice/post/postMCS.service'
 @Resolver('PostAccess')
 export class PostAccessResolver {
+	
 	constructor(private readonly postService: PostMCS) {
-		console.log('postAccess.resolver')
+		console.log('postAccess.resolver');
 	}
+	
 
 	@Query()
-	async mbPostAccess(@Args('mbPostId') mbPostId: string) {
-		//Logger.log(`function:getMbPostAccesses, input: ${mbPostId}`);
-		const data = await this.postService.send('getMbPostAccesses', mbPostId)
-
-		//Logger.log(data);
-		return data
+	async postAccesses(@Args('postId') postId: string) {
+		//console.log(`function:getPostAccesses, input: ${postId}`);
+		const data = await this.postService.send('getPostAccesses', postId);		
+		return data;
 	}
-	//-------------------------------------------------------------------------------------------------------- finished
+	//-------------------------------------------------------------------------------------------------------- 
 
 	@Query(() => PostAccess)
-	async getMbPostAccessById(@Args('_id') _id: string): Promise<PostAccess> {
-		const data = await this.postService.send('getMbPostAccessesById', _id)
-
-		Logger.log(`id : ${_id}`)
-		return data
+	async PostAccessById(@Args('_id') _id: string): Promise<PostAccess> {
+		const data = await this.postService.send('getPostAccessesById', _id);
+		console.log(`id : ${_id}`);
+		return data;
 	}
-	//-------------------------------------------------------------------------------------------------------- finished
+	//-------------------------------------------------------------------------------------------------------- 
 
 	@Mutation(() => PostAccess)
-	async createMbPostAccess(
-		@Args('input') input: CreateMbPostAccessInput
+	async createPostAccess(
+		@Args('input') input: CreatePostAccessInput
 	): Promise<PostAccess> {
-		Logger.log(input)
-		const data = await this.postService.send('createMbPostAccess', input)
-
-		console.log(`function:createPostAccess, res: `, data)
-		return data
+		console.log(input)
+		const data = await this.postService.send('createPostAccess', input);
+		console.log(`function:createPostAccess, res: `, data);
+		return data;
 	}
 
 	@Mutation(() => PostAccess)
-	async updateMbPostAccess(
+	async updatePostAccess(
 		@Args('_id') _id: String,
-		@Args('input') input: UpdateMbPostAccessInput
-	): Promise<MbPostAccess> {
+		@Args('input') input: UpdatePostAccessInput
+	): Promise<PostAccess> {
 		const messageData = { _id, ...input }
-		const data = await this.postService.send('updateMbPostAccess', messageData)
-
-		console.log(data)
-		return data
+		const data = await this.postService.send('updatePostAccess', messageData);
+		console.log(data);
+		return data;
 	}
 
 	@Mutation(() => Boolean)
-	async deleteMbPostAccess(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteMbPostAccesses, input: ${_id}`)
+	async deletePostAccess(@Args('_id') _id: String): Promise<boolean> {
+		console.log(`function:deletePostAccesses, input: ${_id}`)
 		console.log('-------' + _id)
-		const data = await this.postService.send('deleteMbPostAccess', _id)
-
-		console.log('++++++', data)
-		return data
-	}
-
-	@Mutation(() => Boolean)
-	async deleteUserMbPostAccesss(
-		@Args('userId') userId: String
-	): Promise<boolean> {
-		const data = await this.postService.send('deleteUserMbPostAccesss', userId)
-
-		return data
+		const data = await this.postService.send('deletePostAccess', _id);
+		console.log('++++++', data);
+		return data;
 	}
 }

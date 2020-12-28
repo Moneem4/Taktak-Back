@@ -10,7 +10,7 @@ import { PostMCS } from './postMCS.service'
 				name: 'POST-SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakPost'],
+					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakPosts'],
 					queue: 'taktakPosts',
 					noAck: true,
 					queueOptions: {

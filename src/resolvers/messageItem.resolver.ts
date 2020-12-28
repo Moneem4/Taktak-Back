@@ -18,41 +18,34 @@ export class MessageItemResolver {
 	}
 
 	@Query()
-	async messageItem(@Args('messageId') messageId: string) {
-		// Logger.log(`function:getMbPostAccesses, input: ${mbPostId}`);
+	async messageItems(@Args('messageId') messageId: string) {
 		const data = await this.chatService.send('getMessageItems', messageId)
-
-		// Logger.log(data);
-		return data
+		return data;
 	}
-	// to verify
+	
 
 	@Query(() => MessageItem)
 	async messageItemById(@Args('_id') _id: string): Promise<MessageItem> {
 		const data = await this.chatService.send('getMessageItemById', _id)
-
-		Logger.log(`id : ${_id}`)
-		return data
+		console.log(`id : ${_id}`)
+		return data;
 	}
-	// ok
+	
 
 	@Mutation(() => MessageItem)
 	async createMessageItem(
 		@Args('input') input: CreateMessageItemInput
 	): Promise<MessageItem> {
-		Logger.log(input)
-		const data = await this.chatService.send('createMessageItem', input)
-
-		console.log(`function:createMessageItem, res: `, data)
-		return data
+		console.log(input)
+		const data = await this.chatService.send('createMessageItem', input);
+		console.log(`function:createMessageItem, res: `, data);
+		return data;
 	}
-	// ok
+	
 
 	@Mutation(() => Boolean)
 	async deleteMessageItem(@Args('_id') _id: String): Promise<boolean> {
-		const data = await this.chatService.send('deleteMessageItem', _id)
-
-		return data
-	}
-	// ok
+		const data = await this.chatService.send('deleteMessageItem', _id);
+		return data;
+	}	
 }

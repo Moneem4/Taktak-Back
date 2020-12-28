@@ -21,7 +21,7 @@ export class LoggingInterceptor implements NestInterceptor {
 				.bold(`${context.getArgs()[3]['fieldName']}`)
 			return next.handle().pipe(
 				tap(() => {
-					Logger.debug(`⛩  ${parentType} » ${fieldName}`, 'GraphQL')
+					console.debug(`⛩  ${parentType} » ${fieldName}`, 'GraphQL')
 				})
 			)
 		} else {
@@ -33,7 +33,7 @@ export class LoggingInterceptor implements NestInterceptor {
 				.bold(`${context.getArgs()[0].route.stack[0].method}`)
 			return next.handle().pipe(
 				tap(() => {
-					Logger.debug(`⛩  ${parentType} » ${fieldName}`, 'GraphQL')
+					console.debug(`⛩  ${parentType} » ${fieldName}`, 'GraphQL')
 				})
 			)
 		}

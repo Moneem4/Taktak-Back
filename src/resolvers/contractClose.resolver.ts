@@ -26,10 +26,10 @@ export class ContractCloseResolver {
 	@Query(() => ContractClose)
 	async getContractCloseById(@Args('_id') _id: string): Promise<ContractClose> {
 		const data = await this.contractService.send('getContractCloseById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
-			Logger.log(`data vide:`)
+			console.log(`data vide:`)
 			throw new ApolloError('ContractClose déja supprimé +++++')
 		} else {
 			return data
@@ -43,8 +43,8 @@ export class ContractCloseResolver {
 			'getContractCloseByContract',
 			contractId
 		)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${contractId}`)
+		console.log('data: ', data)
+		console.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -52,10 +52,10 @@ export class ContractCloseResolver {
 	async createContractClose(
 		@Args('input') input: CreateContractCloseInput
 	): Promise<ContractClose> {
-		// Logger.log(`function:createContractClose`);
-		Logger.log(input)
+		// console.log(`function:createContractClose`);
+		console.log(input)
 		const data = await this.contractService.send('CreateContractClose', input)
-		Logger.log(`function:CreateContractClose, res: ${data}`)
+		console.log(`function:CreateContractClose, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -76,7 +76,7 @@ export class ContractCloseResolver {
 
 	@Mutation(() => Boolean)
 	async deleteContractClose(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteContractClose, input: ${_id}`)
+		console.log(`function:deleteContractClose, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.contractService.send('deleteContractClose', _id)
 		console.log('++++++', data)

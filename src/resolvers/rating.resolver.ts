@@ -26,8 +26,8 @@ export class RatingResolver {
 	@Query(() => Rating)
 	async getRatingById(@Args('_id') _id: string): Promise<Rating> {
 		const data = await this.ratingService.send('getRatingById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
 			throw new ApolloError('Rating déja supprimé +++++')
 		} else {
@@ -39,10 +39,10 @@ export class RatingResolver {
 
 	@Mutation(() => Rating)
 	async createRating(@Args('input') input: CreateRatingInput): Promise<Rating> {
-		// Logger.log(`function:createRating`);
-		Logger.log(input)
+		// console.log(`function:createRating`);
+		console.log(input)
 		const data = await this.ratingService.send('createRating', input)
-		Logger.log(`function:createRating, res: ${data}`)
+		console.log(`function:createRating, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -60,7 +60,7 @@ export class RatingResolver {
 
 	@Mutation(() => Boolean)
 	async deleteRating(@Args('_id') _id: string): Promise<boolean> {
-		Logger.log(`function:deleteRating, input: ${_id}`)
+		console.log(`function:deleteRating, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.ratingService.send('deleteRating', _id)
 		console.log('++++++', data)

@@ -1,0 +1,25 @@
+input CreateStoryInput {
+	userId: ID!
+	postId: ID!
+}
+
+type Story {
+	_id: ID!
+	userId: String!
+	postId: ID!
+	viewers: [User]!
+	createdAt: String!
+	deletedAt: String!
+	
+}
+
+type Query {
+	stories: [Story]
+	storyById(_id: ID!): Story
+	storiesByUserId(userId: ID!): [Story]
+}
+
+type Mutation {
+	createStory(input: CreateStoryInput!): Story
+	deleteStory(_id: ID!): Boolean
+}

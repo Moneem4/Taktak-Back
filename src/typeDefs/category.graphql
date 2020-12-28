@@ -1,0 +1,28 @@
+input CreateCategoryInput {
+	name: String!
+    description: String!
+}
+input UpdateCategoryInput {
+	name: String !
+    description: String !
+}
+type Category {
+	_id: ID!
+	name: String!
+    description: String !
+	createdAt: String!
+	updatedAt: String!
+	products: [Product]
+    ratings:[Rating]
+}
+
+type Query {
+	getCategories: [Category]
+	getCategoryById(_id: ID!): Category
+}
+
+type Mutation {
+	createCategory(input: CreateCategoryInput!): Category
+     updateCategory(_id: String, input: UpdateCategoryInput): Category
+	deleteCategory(_id: ID!):Boolean!
+}

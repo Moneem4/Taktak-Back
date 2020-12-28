@@ -15,9 +15,9 @@ export class EventAccessResolver {
 
 	@Query()
 	async getEventAccess() {
-		// Logger.log(`function:getEventAccessComment, input: ${EventAccessId}`);
+		// console.log(`function:getEventAccessComment, input: ${EventAccessId}`);
 		const data = await this.eventService.send('getEventAccess', {})
-		// Logger.log(data);
+		// console.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -26,8 +26,8 @@ export class EventAccessResolver {
 	@Query(() => EventAccess)
 	async getEventAccessById(@Args('_id') _id: string): Promise<EventAccess> {
 		const data = await this.eventService.send('getEventAccessById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -36,8 +36,8 @@ export class EventAccessResolver {
 	async createEventAccess(
 		@Args('input') input: CreateEventAccessInput
 	): Promise<EventAccess> {
-		// Logger.log(`function:createEventAccess`);
-		Logger.log(input)
+		// console.log(`function:createEventAccess`);
+		console.log(input)
 		const data = await this.eventService.send('createEventAccess', input)
 		return data
 	}
@@ -57,7 +57,7 @@ export class EventAccessResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventAccess(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteEventAccess, input: ${_id}`)
+		console.log(`function:deleteEventAccess, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventAccess', _id)
 		console.log('++++++', data)

@@ -1,0 +1,33 @@
+input CreatePromotionInput {
+	productId: ID!
+	userId: ID!
+	postId: ID!
+	percentage: Float!
+}
+
+input UpdatePromotionInput {
+	percentage: Float!
+}
+
+type Promotion {
+	_id: ID!
+	userId: ID!
+	productId: ID!
+	postId: ID!
+	percentage: Float!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
+}
+
+type Query {
+	promotions: [Promotion]
+	promotionById(_id: ID!): Promotion
+	promotionsByUserId(userId: ID!): [Promotion]
+}
+
+type Mutation {
+	createPromotion(input: CreatePromotionInput): Promotion
+	updatePromotion(_id: ID!, input: UpdatePromotionInput!): Promotion
+	deletePromotion(_id: ID!): Boolean
+}

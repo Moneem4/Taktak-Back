@@ -1,0 +1,37 @@
+input CreateFlashSaveInput {
+	name: String!
+    description: String!
+    quantity:Float!
+     price:Float!
+    createdAt: String!
+    deletedAt:String!
+	updatedAt: String!
+}
+input UpdateFlashSaveInput {
+	name: String
+	price: Float!
+    quantity:Float!
+    description: String
+}
+type FlashSave {
+	_id: ID!	
+	name: String!
+	description: String!
+	createdAt: String!
+    deletedAt:String!
+    price:Float!
+	updatedAt: String!
+}
+
+type Query {
+	getFlashSaves: [FlashSave]
+	getFlashSaveById(_id: ID!): FlashSave
+}
+
+type Mutation {
+	createFlashSave(input: CreateFlashSaveInput!): FlashSave
+    updateFlashSave(_id: String, input: UpdateFlashSaveInput): FlashSave
+	deleteFlashSave(_id: ID!):Boolean!
+	
+   
+}

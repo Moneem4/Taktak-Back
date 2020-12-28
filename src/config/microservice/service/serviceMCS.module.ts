@@ -10,7 +10,7 @@ import { ServiceMCS } from './serviceMCS.service'
 				name: 'SERVICES_SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakServices'],
+					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakService'],
 					queue: 'taktakServices',
 					noAck: false,
 					queueOptions: {

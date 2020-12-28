@@ -2,32 +2,32 @@ import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 import {
 	CreateProductInput,
 	UpdateProductInput,
-	ProductT
+	Product
 } from '../generator/graphql.schema'
 import { Logger } from '@nestjs/common'
 import { ApolloError } from 'apollo-server-express'
 import { ProductMCS } from '../config/microservice/product/productMCS.service'
 
-@Resolver('ProductT')
+@Resolver('Product')
 export class ProductResolver {
 	constructor(private readonly productService: ProductMCS) {
 		console.log('Product.resolver')
 	}
 
 	@Query()
-	async getProductsT() {
-		const data = await this.productService.send('getProductsT', {})
+	async getProducts() {
+		const data = await this.productService.send('getProducts', {})
 
 		return data
 	}
 
 	// -------------------------------------------------------------------------------------------------------- finished
 
-	@Query(() => ProductT)
-	async getProductTById(@Args('_id') _id: string): Promise<ProductT> {
-		const data = await this.productService.send('getProductByIdT', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+	@Query(() => Product)
+	async getProductById(@Args('_id') _id: string): Promise<Product> {
+		const data = await this.productService.send('getProductById', _id)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
 			throw new ApolloError('Product déja supprimé +++++')
 		} else {
@@ -37,34 +37,34 @@ export class ProductResolver {
 
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => ProductT)
-	async createProductT(
+	@Mutation(() => Product)
+	async createProduct(
 		@Args('input') input: CreateProductInput
-	): Promise<ProductT> {
-		// Logger.log(`function:createProduct`);
-		Logger.log(input)
-		const data = await this.productService.send('createProductT', input)
-		Logger.log(`function:createProduct, res: ${data}`)
+	): Promise<Product> {
+		// console.log(`function:createProduct`);
+		console.log(input)
+		const data = await this.productService.send('createProduct', input)
+		console.log(`function:createProduct, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => ProductT)
-	async updateProductT(
+	@Mutation(() => Product)
+	async updateProduct(
 		@Args('_id') _id: string,
 		@Args('input') input: UpdateProductInput
-	): Promise<ProductT> {
+	): Promise<Product> {
 		const messageData = { _id, ...input }
-		const data = await this.productService.send('updateProductT', messageData)
+		const data = await this.productService.send('updateProduct', messageData)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => Boolean)
-	async deleteProductT(@Args('_id') _id: string): Promise<boolean> {
-		Logger.log(`function:deleteProduct, input: ${_id}`)
+	async deleteProduct(@Args('_id') _id: string): Promise<boolean> {
+		console.log(`function:deleteProduct, input: ${_id}`)
 		console.log('-------' + _id)
-		const data = await this.productService.send('deleteProductT', _id)
+		const data = await this.productService.send('deleteProduct', _id)
 		console.log('++++++', data)
 		return data
 	}

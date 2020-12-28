@@ -14,9 +14,9 @@ export class TaskResolver {
 
 	@Query()
 	async getTasks() {
-		// Logger.log(`function:getTaskComment, input: ${TaskId}`);
+		// console.log(`function:getTaskComment, input: ${TaskId}`);
 		const data = await this.EventService.send('getTasks', {})
-		// Logger.log(data);
+		// console.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -25,18 +25,18 @@ export class TaskResolver {
 	@Query(() => Task)
 	async getTaskById(@Args('_id') _id: string): Promise<Task> {
 		const data = await this.EventService.send('getTaskById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => Task)
 	async createTask(@Args('input') input: CreateTaskInput): Promise<Task> {
-		// Logger.log(`function:createTask`);
-		Logger.log(input)
+		// console.log(`function:createTask`);
+		console.log(input)
 		const data = await this.EventService.send('createTask', input)
-		Logger.log(`function:createTask, res: ${data}`)
+		console.log(`function:createTask, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -54,7 +54,7 @@ export class TaskResolver {
 
 	@Mutation(() => Boolean)
 	async deleteTasks(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteTask, input: ${_id}`)
+		console.log(`function:deleteTask, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.EventService.send('deleteTask', _id)
 		console.log('++++++', data)

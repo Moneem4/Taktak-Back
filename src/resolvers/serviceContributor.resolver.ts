@@ -27,13 +27,13 @@ export class ServiceContributorResolver {
 	async createServiceContributor(
 		@Args('input') input: CreateServiceContributorInput
 	): Promise<ServiceContributor> {
-		Logger.log(input)
+		console.log(input)
 		const data = await this.servicesService.send(
 			'createServiceContributor',
 			input
 		)
 
-		Logger.log(`function:createServiceContributor, res: ${data}`)
+		console.log(`function:createServiceContributor, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -55,7 +55,7 @@ export class ServiceContributorResolver {
 
 	@Mutation(() => Boolean)
 	async deleteServiceContributor(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteServiceContributor, input: ${_id}`)
+		console.log(`function:deleteServiceContributor, input: ${_id}`)
 		const data = await this.servicesService.send(
 			'deleteServiceContributor',
 			_id

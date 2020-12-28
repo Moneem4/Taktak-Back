@@ -1,0 +1,44 @@
+enum State{
+	PUBLISHED
+    NOT_PUBLISHED
+}
+
+
+enum AccessType{
+	CUSTOM
+	GUEST
+    BLACK_LISTED
+}
+input CreateEventAccessInput{
+	event:ID!
+    accessType:AccessType!
+    deletedAt:String
+    updatedAt:String
+}
+
+input UpdateEventAccessInput{
+	 accessType:AccessType!
+   
+}
+
+type EventAccess{
+	_id: ID!
+	event:Event!
+    accessType:AccessType!
+    deletedAt:String
+    updatedAt: String
+    createdAt: String!
+
+}
+
+type Query{
+	getEventAccess:[EventAccess]
+	getEventAccessById(_id: ID!): EventAccess
+   
+}
+
+type Mutation{
+	createEventAccess(input: CreateEventAccessInput!): EventAccess
+    updateEventAccess(_id: ID!,input: UpdateEventAccessInput): EventAccess
+    deleteEventAccess(_id: ID!): Boolean
+}

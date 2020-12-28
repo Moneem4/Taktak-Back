@@ -25,8 +25,8 @@ export class EventLogResolver {
 	@Query(() => EventLog)
 	async getEventLogById(@Args('_id') _id: string): Promise<EventLog> {
 		const data = await this.eventService.send('getEventLogById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -35,10 +35,10 @@ export class EventLogResolver {
 	async createEventLog(
 		@Args('input') input: CreateEventLogInput
 	): Promise<EventLog> {
-		// Logger.log(`function:createEventLog`);
-		Logger.log(input)
+		// console.log(`function:createEventLog`);
+		console.log(input)
 		const data = await this.eventService.send('createEventLog', input)
-		Logger.log(`function:createEventLog, res: ${data}`)
+		console.log(`function:createEventLog, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -56,7 +56,7 @@ export class EventLogResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventLog(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteEventLog, input: ${_id}`)
+		console.log(`function:deleteEventLog, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventLog', _id)
 		console.log('++++++', data)

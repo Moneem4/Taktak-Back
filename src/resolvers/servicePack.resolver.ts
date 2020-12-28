@@ -26,9 +26,9 @@ export class ServicePacksResolver {
 	async createService(
 		@Args('input') input: CreateServicePackInput
 	): Promise<ServicePack> {
-		Logger.log(input)
+		console.log(input)
 		const data = await this.servicesService.send('createServicePack', input)
-		Logger.log(`function:createServicePack, res: ${data}`)
+		console.log(`function:createServicePack, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -50,7 +50,7 @@ export class ServicePacksResolver {
 
 	@Mutation(() => Boolean)
 	async deleteServicePack(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteServicePack, input: ${_id}`)
+		console.log(`function:deleteServicePack, input: ${_id}`)
 		const data = await this.servicesService.send('deleteServicePack', _id)
 		return data
 	}

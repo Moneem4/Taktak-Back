@@ -2,7 +2,7 @@ import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 import {
 	CreateOfferInput,
 	UpdateOfferInput,
-	OfferT
+	Offer
 } from '../generator/graphql.schema'
 import { Logger } from '@nestjs/common'
 import { ApolloError } from 'apollo-server-express'
@@ -15,19 +15,19 @@ export class OfferResolver {
 	}
 
 	@Query()
-	async getOffersT() {
-		const data = await this.productService.send('getOffersT', {})
+	async getOffers() {
+		const data = await this.productService.send('getOffers', {})
 
 		return data
 	}
 
 	// -------------------------------------------------------------------------------------------------------- finished
 
-	@Query(() => OfferT)
-	async getOfferTById(@Args('_id') _id: string): Promise<OfferT> {
-		const data = await this.productService.send('getOfferByIdT', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+	@Query(() => Offer)
+	async getOfferById(@Args('_id') _id: string): Promise<Offer> {
+		const data = await this.productService.send('getOfferById', _id)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		if (data == null) {
 			throw new ApolloError('Offer déja supprimé +++++')
 		} else {
@@ -37,32 +37,32 @@ export class OfferResolver {
 
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => OfferT)
-	async createOfferT(@Args('input') input: CreateOfferInput): Promise<OfferT> {
-		// Logger.log(`function:createOffer`);
-		Logger.log(input)
-		const data = await this.productService.send('createOfferT', input)
-		Logger.log(`function:createOffer, res: ${data}`)
+	@Mutation(() => Offer)
+	async createOffer(@Args('input') input: CreateOfferInput): Promise<Offer> {
+		// console.log(`function:createOffer`);
+		console.log(input)
+		const data = await this.productService.send('createOffer', input)
+		console.log(`function:createOffer, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => OfferT)
-	async updateOfferT(
+	@Mutation(() => Offer)
+	async updateOffer(
 		@Args('_id') _id: string,
 		@Args('input') input: UpdateOfferInput
-	): Promise<OfferT> {
+	): Promise<Offer> {
 		const messageData = { _id, ...input }
-		const data = await this.productService.send('updateOfferT', messageData)
+		const data = await this.productService.send('updateOffer', messageData)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => Boolean)
-	async deleteOfferT(@Args('_id') _id: string): Promise<boolean> {
-		Logger.log(`function:deleteOffer, input: ${_id}`)
+	async deleteOffer(@Args('_id') _id: string): Promise<boolean> {
+		console.log(`function:deleteOffer, input: ${_id}`)
 		console.log('-------' + _id)
-		const data = await this.productService.send('deleteOfferT', _id)
+		const data = await this.productService.send('deleteOffer', _id)
 		console.log('++++++', data)
 		return data
 	}

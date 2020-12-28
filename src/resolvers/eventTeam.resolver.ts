@@ -22,23 +22,23 @@ export class EventTeamResolver {
 		@Args('eventId') eventId: string
 	): Promise<EventTeam> {
 		const data = await this.eventService.send('getEventTeamById', eventId)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${eventId}`)
+		console.log('data: ', data)
+		console.log(`id : ${eventId}`)
 		return data
 	}
 
 	@Query(() => EventTeam)
 	async getEventTeamById(@Args('_id') _id: string): Promise<EventTeam> {
 		const data = await this.eventService.send('getEventTeamById', _id)
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
 		return data
 	}
 	/* @Query()
     async getEventTeamsByEvent(@Args('eventId') eventId: string): Promise<EventTeam> {
         const data = await this.eventService.send( 'getEventTeamsByEvent', eventId);
-        Logger.log("data: ",data);
-        Logger.log(`id : ${eventId}`);
+        console.log("data: ",data);
+        console.log(`id : ${eventId}`);
         return data;
     }    */
 	// ----------------------------------------------------------------------------------------------- finished
@@ -47,10 +47,10 @@ export class EventTeamResolver {
 	async createEventTeam(
 		@Args('input') input: CreateEventTeamInput
 	): Promise<EventTeam> {
-		// Logger.log(`function:createEventTeam`);
-		Logger.log(input)
+		// console.log(`function:createEventTeam`);
+		console.log(input)
 		const data = await this.eventService.send('createEventTeam', input)
-		Logger.log(`function:createEventTeam, res: ${data}`)
+		console.log(`function:createEventTeam, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -68,7 +68,7 @@ export class EventTeamResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventTeam(@Args('_id') _id: String): Promise<boolean> {
-		Logger.log(`function:deleteEventTeam, input: ${_id}`)
+		console.log(`function:deleteEventTeam, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventTeam', _id)
 		console.log('++++++', data)
