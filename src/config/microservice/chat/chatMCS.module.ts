@@ -7,11 +7,13 @@ import { ChatMCS } from './chatMCS.service'
 	imports: [
 		ClientsModule.register([
 			{
-				name: 'CHAT-SERVICE',
+				name: 'chat',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakChats'],
-					queue: 'taktakChats',
+					urls: [
+						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_CHAT_VHOST}`
+					],
+					queue: `${process.env.RABBITMQ_MCS_CHAT_QUEUE}`,
 					noAck: true,
 					queueOptions: {
 						durable: true

@@ -1,6 +1,6 @@
 import * as child from 'child_process'
 import * as formatDate from 'dateformat'
-// mongorestore --host hostname.com --port 27017 --username user --password pass mongodump/db/
+// mongorestore --host hostname.com --port 27019 --username user --password pass mongodump/db/
 
 import {
 	MLAB_HOST,
