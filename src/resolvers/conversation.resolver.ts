@@ -28,12 +28,10 @@ export class ConversationResolver {
 	// -------------------------------------------------------------------------------------------------
 
 	@Query(() => Conversation)
-	async conversationsByUserId(@Args('_id') _id: string): Promise<Conversation> {
+	async conversationsByUserId(@Args('userId') userId: string): Promise<Conversation> {
 		console.log('im here')
-		const data = await this.chatService.send('getConversationsByUserId', _id)
-
-		console.log('resolver data: ', data)
-		return data
+		const data = await this.chatService.send('getConversationsByUserId',userId)		
+		return data;
 	}
 	// -------------------------------------------------------------------------------------------------
 

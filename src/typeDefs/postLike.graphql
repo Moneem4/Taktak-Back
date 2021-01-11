@@ -7,14 +7,14 @@ type PostLike {
 	_id: ID!
 	userId: ID!
 	postId: ID!
-	createdAt: String!
-	updatedAt: String
+	createdAt: String!	
 	deletedAt: String
 }
 
 type Query {
 	postLikes(postId: ID!): [PostLike]
 	postLikeById(_id: ID!): PostLike
+	postLikeByUserId(userId: ID!): [PostLike]
 }
 
 type Mutation {

@@ -17,7 +17,7 @@ input UpdatePostAccessInput {
 type PostAccess {
 	_id: ID!
 	userId: String!
-	postId: String!
+	postId: ID!
 	postAccessType: PostAccessType!
 	createdAt: String!
 	updatedAt: String
@@ -25,7 +25,7 @@ type PostAccess {
 }
 
 type Query {
-	postAccesses(postId: String!): [PostAccess]
+	postAccesses(postId:  ID!): [PostAccess]
 	PostAccessById(_id: ID!): PostAccess
 }
 

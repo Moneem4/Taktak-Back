@@ -1,6 +1,7 @@
 input CreateConversationInput {
 	userId: ID!
 	participantId: ID!
+	name: String
 }
 
 input UpdateConversationInput {
@@ -12,11 +13,11 @@ type Conversation {
 	userId: ID!
 	participantId: ID!
 	name: String
-	lastMessage: Message
+	lastMessageId: ID!
 	messages: [Message]
 	isBlocked: Boolean!
 	createdAt: String!	
-	deletedAt: String!
+	deletedAt: String
 }
 
 type Query {

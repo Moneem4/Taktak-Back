@@ -7,8 +7,7 @@ type PostBestie {
 	_id: ID!
 	userId: String!
 	postId: String!
-	createdAt: String!
-	updatedAt: String
+	createdAt: String!	
 	deletedAt: String
 }
 

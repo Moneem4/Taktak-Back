@@ -7,8 +7,7 @@ type PostShared {
 	_id: ID!
 	userId: ID!
 	postId: ID!
-	createdAt: String!
-	updatedAt: String
+	createdAt: String!	
 	deletedAt: String
 }
 
