@@ -14,6 +14,7 @@ input UpdateWastedFoodInput {
     quantity:Float!
     description: String	
 	updatedAt: String
+	deletedAt:String
 }
 type WastedFood {
 	_id: ID!	
@@ -26,9 +27,6 @@ type WastedFood {
     deletedAt:String!
 	updatedAt: String!
     
-	createdAt: String!
-    deletedAt:String!
-	updatedAt: String!
 }
 
 type Query {
