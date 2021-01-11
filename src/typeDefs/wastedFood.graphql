@@ -1,0 +1,45 @@
+input CreateWastedFoodInput {
+	name: String!
+    description: String!
+	price: Float!
+    quantity:Float!
+    createdAt: String!
+     utility:String!
+    deletedAt:String!
+	updatedAt: String!
+}
+input UpdateWastedFoodInput {
+	name: String
+	price: Float!
+    quantity:Float!
+    description: String	
+	updatedAt: String
+}
+type WastedFood {
+	_id: ID!	
+	name: String!
+    price:Float!
+	description: String!
+    food:[Product]!
+    utility:String!
+	createdAt: String!
+    deletedAt:String!
+	updatedAt: String!
+    
+	createdAt: String!
+    deletedAt:String!
+	updatedAt: String!
+}
+
+type Query {
+	getWastedFoods: [WastedFood]
+	getWastedFoodById(_id: ID!): WastedFood
+}
+
+type Mutation {
+	createWastedFood(input: CreateWastedFoodInput!): WastedFood
+    updateWastedFood(_id: String, input: UpdateWastedFoodInput): WastedFood
+	deleteWastedFood(_id: ID!):Boolean!
+	
+   
+}

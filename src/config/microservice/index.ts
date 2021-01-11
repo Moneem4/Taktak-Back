@@ -1,0 +1,5 @@
+export * from './contract/contractMCS.module'
+export * from './service/serviceMCS.module'
+export * from './event/eventMCS.module'
+export * from './chat/chatMCS.module'
+export * from './post/postMCS.module'

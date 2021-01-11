@@ -1,0 +1,31 @@
+input CreateConversationInput {
+	userId: ID!
+	participantId: ID!
+}
+
+input UpdateConversationInput {
+	lastMessageId: ID!
+}
+
+type Conversation {
+	_id: ID!
+	userId: ID!
+	participantId: ID!
+	lastMessage: Message
+	messages: [Message]
+	createdAt: Float!
+	updatedAt: Float!
+}
+
+type Query {
+	conversations: [Conversation]
+	conversationById(_id: ID!): Conversation
+	#TODO: add find contacts
+	conversationsByUserId(_id: ID!): [Conversation]
+}
+
+type Mutation {
+	createConversation(input: CreateConversationInput!): Conversation
+	deleteConversation(_id: ID!): Boolean
+	deleteConversationByUserId(userId: ID!): Boolean
+}

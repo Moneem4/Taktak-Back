@@ -1,0 +1,50 @@
+enum MbPostType {
+	AUDIO
+	VIDEO
+	IMAGE
+	TEXT
+}
+
+enum Access {
+	PRIVATE
+	PUBLIC
+}
+
+input CreateMbPostInput {
+	userId: ID!
+	mbPostType: MbPostType!
+	title: String
+	content: String
+}
+
+input UpdateMbPostInput {
+	mbPostType: MbPostType!
+	title: String
+	content: String
+}
+
+type MbPost {
+	_id: ID!
+	userId: ID!
+	mbPostType: MbPostType!
+	title: String!
+	content: String!
+	likes: [MbPostLike]
+	accesses: [MbPostAccess]
+	comments: [MbPostComment]
+	createdAt: Float!
+	updatedAt: Float!
+}
+
+type Query {
+	getMbPosts: [MbPost]
+	getMbPostById(_id: String!): MbPost
+}
+
+type Mutation {
+	createMbPost(input: CreateMbPostInput!): MbPost
+	updateMbPost(_id: ID!, input: UpdateMbPostInput): MbPost
+	deleteMbPost(_id: ID!): Boolean
+	deleteMbPosts(postId: ID!): Boolean!
+	deleteUserMbPosts(userId: ID!): Boolean!
+}

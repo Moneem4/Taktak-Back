@@ -1,0 +1,39 @@
+enum EventLogType {
+	UPDATE
+	STATES
+}
+
+input CreateEventLogInput {
+	userId: ID!
+	eventId: ID!
+	action: String!
+	deletedAt:String
+	updatedAt: String
+	
+}
+input UpdateEventLogInput {
+	eventId: ID!
+	action: String!
+}
+type EventLog {
+	_id: ID!
+	userId: ID!
+	event: Event!
+	action: String!
+	createdAt: String!
+	updatedAt: String
+	deletedAt:String
+}
+
+type Query {
+	getEventLogById(_id: ID!): [EventLog]
+	getEventLogByUserId(userId: ID!): [EventLog]
+	getEventLogs:[EventLog]
+}
+
+type Mutation {
+	createEventLog(input: CreateEventLogInput!): EventLog
+	updateEventLog(_id: ID!, input: UpdateEventLogInput!): EventLog
+	deleteEventLog(_id: ID!): Boolean!
+	
+}

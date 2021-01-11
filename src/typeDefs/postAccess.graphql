@@ -1,0 +1,38 @@
+enum MbPostAccessType {
+	BLACK_LISTED
+	PRIVATE
+	PUBLIC
+}
+
+input CreateMbPostAccessInput {
+	userId: ID!
+	mbPostId: ID!
+	mbPostAccessType: MbPostAccessType!
+}
+
+input UpdateMbPostAccessInput {
+	mbPostAccessType: MbPostAccessType!
+}
+
+type MbPostAccess {
+	_id: ID!
+	userId: ID!
+	mbPostId: ID!
+	mbPostAccessType: MbPostAccessType!
+	createdAt: Float!
+	updatedAt: Float!
+}
+
+type Query {
+	mbPostAccess(mbPostId: String!): [MbPostAccess]
+	getMbPostAccessById(_id: ID!): MbPostAccess
+	
+}
+
+type Mutation {
+	createMbPostAccess(input: CreateMbPostAccessInput!): MbPostAccess
+	updateMbPostAccess(_id: ID!, input: UpdateMbPostAccessInput): MbPostAccess
+	deleteMbPostAccess(_id: ID!):Boolean
+	deleteMbPostAccesss(mbPostId:ID!):Boolean!
+	deleteUserMbPostAccesss(userId:ID!):Boolean!
+}
