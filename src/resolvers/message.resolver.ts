@@ -39,7 +39,11 @@ export class MessageResolver {
 
 	@Mutation(() => Boolean)
 	async deleteMessage(@Args('_id') _id: String): Promise<boolean> {
+<<<<<<< HEAD
 		Logger.log(`function:deleteMessage, input: ${_id}`)
+=======
+		console.log(`function:deleteMessage, input: ${_id}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		console.log('-------' + _id)
 		const data = await this.chatService.send('deleteMessage', _id)
 		return data

@@ -21,7 +21,7 @@ import {
 	LoggerMiddleware
 	// logger
 } from '@common'
-import { timeout, interval, cron } from '@shared'
+import { cron } from '@shared'
 import { EmailResolver } from './resolvers/email.resolver'
 import 'validations'
 
@@ -46,15 +46,15 @@ async function bootstrap() {
 			// 	key: fs.readFileSync(`./ssl/product/server.key`),
 			// 	cert: fs.readFileSync(`./ssl/product/server.crt`)
 			// },
-			logger: new MyLogger()
+			logger: console
 		})
 
 		// NOTE: database connect
 		const connection = getConnection('default')
 		const { isConnected } = connection
 		isConnected
-			? Logger.log(`🌨️  Database connected`, 'TypeORM', false)
-			: Logger.error(`❌  Database connect error`, '', 'TypeORM', false)
+			? console.log(`🌨️  Database connected`, 'TypeORM', false)
+			: console.error(`❌  Database connect error`, '', 'TypeORM', false)
 
 		// NOTE: tasks
 		// timeout()
@@ -156,14 +156,14 @@ async function bootstrap() {
 		}
 
 		NODE_ENV !== 'production'
-			? Logger.log(
+			? console.log(
 					`🚀  Server ready at http://${DOMAIN!}:${chalk
 						.hex(PRIMARY_COLOR!)
 						.bold(`${PORT!}`)}/${END_POINT!}`,
 					'Bootstrap',
 					false
 			  )
-			: Logger.log(
+			: console.log(
 					`🚀  Server is listening on port ${chalk
 						.hex(PRIMARY_COLOR!)
 						.bold(`${PORT!}`)}`,
@@ -172,7 +172,7 @@ async function bootstrap() {
 			  )
 
 		NODE_ENV !== 'production' &&
-			Logger.log(
+			console.log(
 				`🚀  Subscriptions ready at ws://${DOMAIN!}:${chalk
 					.hex(PRIMARY_COLOR!)
 					.bold(`${PORT!}`)}/${END_POINT!}`,
@@ -183,11 +183,11 @@ async function bootstrap() {
 		const server = await app.listen(PORT!)
 	} catch (error) {
 		// logger.error(error)
-		Logger.error(`❌  Error starting server, ${error}`, '', 'Bootstrap', false)
+		console.error(`❌  Error starting server, ${error}`, '', 'Bootstrap', false)
 		process.exit()
 	}
 }
 bootstrap().catch(e => {
-	Logger.error(`❌  Error starting server, ${e}`, '', 'Bootstrap', false)
+	console.error(`❌  Error starting server, ${e}`, '', 'Bootstrap', false)
 	throw e
 })

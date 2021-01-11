@@ -1,23 +1,23 @@
-input CreateMbPostLikeInput {
+input CreatePostLikeInput {
 	userId: ID!
-	mbPost: ID!
+	postId: ID!
 }
 
-type MbPostLike {
+type PostLike {
 	_id: ID!
 	userId: ID!
-	mbPost: MbPost!
-	createdAt: Float!
-	updatedAt: Float!
+	postId: ID!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
 }
 
 type Query {
-	mbPostLikes(mbPostId: ID!): [MbPostLike]
-	getMbPostLikeById(_id: ID!): MbPostLike
+	postLikes(postId: ID!): [PostLike]
+	postLikeById(_id: ID!): PostLike
 }
 
 type Mutation {
-	createMbPostLike(input: CreateMbPostLikeInput!): MbPostLike	
-	deleteMbPostLike(_id: ID!):Boolean	
-	deleteMbUserLikes(userId:ID!):Boolean
+	createPostLike(input: CreatePostLikeInput!): PostLike
+	deletePostLike(_id: ID!): Boolean
 }

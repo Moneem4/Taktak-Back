@@ -11,21 +11,21 @@ type Conversation {
 	_id: ID!
 	userId: ID!
 	participantId: ID!
+	name: String
 	lastMessage: Message
 	messages: [Message]
-	createdAt: Float!
-	updatedAt: Float!
+	isBlocked: Boolean!
+	createdAt: String!	
+	deletedAt: String!
 }
 
 type Query {
 	conversations: [Conversation]
 	conversationById(_id: ID!): Conversation
-	#TODO: add find contacts
-	conversationsByUserId(_id: ID!): [Conversation]
+	conversationsByUserId(userId: ID!): [Conversation]
 }
 
 type Mutation {
 	createConversation(input: CreateConversationInput!): Conversation
 	deleteConversation(_id: ID!): Boolean
-	deleteConversationByUserId(userId: ID!): Boolean
 }

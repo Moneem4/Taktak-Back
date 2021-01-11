@@ -1,50 +1,49 @@
-enum MbPostType {
-	AUDIO
+enum PostType {
 	VIDEO
 	IMAGE
 	TEXT
 }
 
-enum Access {
-	PRIVATE
-	PUBLIC
-}
-
-input CreateMbPostInput {
+input CreatePostInput {
 	userId: ID!
-	mbPostType: MbPostType!
-	title: String
-	content: String
-}
-
-input UpdateMbPostInput {
-	mbPostType: MbPostType!
-	title: String
-	content: String
-}
-
-type MbPost {
-	_id: ID!
-	userId: ID!
-	mbPostType: MbPostType!
+	postType: PostType!
 	title: String!
 	content: String!
-	likes: [MbPostLike]
-	accesses: [MbPostAccess]
-	comments: [MbPostComment]
-	createdAt: Float!
-	updatedAt: Float!
+	restaurantName: String!
+	location: String!
+}
+
+input UpdatePostInput {
+	postType: PostType
+	title: String
+	evaluation: Int
+	content: String
+}
+
+type Post {
+	_id: ID!
+	userId: ID!
+	postType: PostType!
+	title: String!
+	content: String!
+	evaluation: Int
+	restaurantName: String!
+	location: String!
+	likes: [PostLike]
+	accesses: [PostAccess]
+	comments: [PostComment]
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String!
 }
 
 type Query {
-	getMbPosts: [MbPost]
-	getMbPostById(_id: String!): MbPost
+	posts: [Post]
+	postById(_id: ID!): Post
 }
 
 type Mutation {
-	createMbPost(input: CreateMbPostInput!): MbPost
-	updateMbPost(_id: ID!, input: UpdateMbPostInput): MbPost
-	deleteMbPost(_id: ID!): Boolean
-	deleteMbPosts(postId: ID!): Boolean!
-	deleteUserMbPosts(userId: ID!): Boolean!
+	createPost(input: CreatePostInput!): Post
+	updatePost(_id: ID!, input: UpdatePostInput): Post
+	deletePost(_id: ID!): Boolean
 }

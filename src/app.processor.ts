@@ -6,8 +6,8 @@ import { Job } from 'bull'
 export class AppProcessor {
 	@Process('transcode')
 	handleTranscode(job: Job) {
-		Logger.log('Start transcoding...', 'Bull')
-		Logger.log(job.data, 'Bull')
-		Logger.log('Transcoding completed', 'Bull')
+		console.log('Start transcoding...', 'Bull')
+		console.log(job.data, 'Bull')
+		console.log('Transcoding completed', 'Bull')
 	}
 }

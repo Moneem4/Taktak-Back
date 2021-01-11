@@ -1,16 +1,16 @@
-import { Entity, ObjectIdColumn, Column } from 'typeorm'
+/* import { Entity, ObjectIdColumn, Column } from 'typeorm'
 import { Expose, plainToClass } from 'class-transformer'
 import * as uuid from 'uuid'
 import {
-	MbPostType,
-	MbPostLike,
-	MbPostAccess,
-	MbPostComment,
-	MbPost
+    PostType,
+	PostLike,
+	PostAccess,
+	PostComment,
+	
 } from '../generator/graphql.schema'
 
 @Entity({
-	name: 'MbPost',
+	name: 'Post',
 	orderBy: {
 		createdAt: 'ASC'
 	}
@@ -26,23 +26,23 @@ export class Post {
 
 	@Expose()
 	@Column()
-	postType: MbPostType
+	postType: PostType
 
 	@Expose()
 	@Column()
-	title: String
+    title: String
+    
+    @Expose()
+    @Column()
+    likes: PostLike[]
 
-	@Expose()
-	@Column()
-	likes: MbPostLike[]
+    @Expose()
+    @Column()
+    accesses: PostAccess[]
 
-	@Expose()
-	@Column()
-	accesses: MbPostAccess[]
-
-	@Expose()
-	@Column()
-	comments: MbPostComment[]
+    @Expose()
+    @Column()
+    comments: PostComment[]
 
 	@Expose()
 	@Column()
@@ -51,7 +51,7 @@ export class Post {
 	@Column()
 	updatedAt: number
 
-	constructor(post: Partial<MbPost>) {
+	constructor(post: Partial<Post>) {
 		if (post) {
 			Object.assign(
 				this,
@@ -69,3 +69,4 @@ export class Post {
 		}
 	}
 }
+ */

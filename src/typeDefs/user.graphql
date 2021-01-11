@@ -112,6 +112,7 @@ type User {
 	isActivated: Boolean @deprecated(reason: "Use `isVerified`.")
 	isOnline: Boolean!
 	isLocked: Boolean!
+	isPage: Boolean!
 	reason: String!
 	isActive: Boolean!
 	stripeId: String

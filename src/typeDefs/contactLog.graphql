@@ -8,7 +8,7 @@ input CreateContractLogInput {
 	closeId: ID!
 	type: ContractLogType!
 	description: String!
-	deletedAt:String
+	deletedAt: String
 	updatedAt: String
 }
 
@@ -19,7 +19,7 @@ type ContractLog {
 	type: ContractLogType!
 	description: String!
 	createdAt: String!
-	deletedAt:String
+	deletedAt: String
 	updatedAt: String
 }
 

@@ -1,38 +1,36 @@
-enum MbPostAccessType {
+enum PostAccessType {
 	BLACK_LISTED
 	PRIVATE
 	PUBLIC
 }
 
-input CreateMbPostAccessInput {
+input CreatePostAccessInput {
 	userId: ID!
-	mbPostId: ID!
-	mbPostAccessType: MbPostAccessType!
+	postId: ID!
+	postAccessType: PostAccessType!
 }
 
-input UpdateMbPostAccessInput {
-	mbPostAccessType: MbPostAccessType!
+input UpdatePostAccessInput {
+	postAccessType: PostAccessType!
 }
 
-type MbPostAccess {
+type PostAccess {
 	_id: ID!
-	userId: ID!
-	mbPostId: ID!
-	mbPostAccessType: MbPostAccessType!
-	createdAt: Float!
-	updatedAt: Float!
+	userId: String!
+	postId: String!
+	postAccessType: PostAccessType!
+	createdAt: String!
+	updatedAt: String
+	deletedAt: String
 }
 
 type Query {
-	mbPostAccess(mbPostId: String!): [MbPostAccess]
-	getMbPostAccessById(_id: ID!): MbPostAccess
-	
+	postAccesses(postId: String!): [PostAccess]
+	PostAccessById(_id: ID!): PostAccess
 }
 
 type Mutation {
-	createMbPostAccess(input: CreateMbPostAccessInput!): MbPostAccess
-	updateMbPostAccess(_id: ID!, input: UpdateMbPostAccessInput): MbPostAccess
-	deleteMbPostAccess(_id: ID!):Boolean
-	deleteMbPostAccesss(mbPostId:ID!):Boolean!
-	deleteUserMbPostAccesss(userId:ID!):Boolean!
+	createPostAccess(input: CreatePostAccessInput!): PostAccess
+	updatePostAccess(_id: ID!, input: UpdatePostAccessInput): PostAccess
+	deletePostAccess(_id: ID!): Boolean
 }

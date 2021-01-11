@@ -26,8 +26,13 @@ export class WastedFoodResolver {
 	@Query(() => WastedFood)
 	async getWastedFoodById(@Args('_id') _id: string): Promise<WastedFood> {
 		const data = await this.servicesService.send('getWastedFoodById', _id)
+<<<<<<< HEAD
 		Logger.log('data: ', data)
 		Logger.log(`id : ${_id}`)
+=======
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		if (data == null) {
 			throw new ApolloError('WastedFood déja supprimé +++++')
 		} else {
@@ -41,10 +46,17 @@ export class WastedFoodResolver {
 	async createWastedFood(
 		@Args('input') input: CreateWastedFoodInput
 	): Promise<WastedFood> {
+<<<<<<< HEAD
 		// Logger.log(`function:createWastedFood`);
 		Logger.log(input)
 		const data = await this.servicesService.send('createWastedFood', input)
 		Logger.log(`function:createWastedFood, res: ${data}`)
+=======
+		// console.log(`function:createWastedFood`);
+		console.log(input)
+		const data = await this.servicesService.send('createWastedFood', input)
+		console.log(`function:createWastedFood, res: ${data}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -65,7 +77,11 @@ export class WastedFoodResolver {
 
 	@Mutation(() => Boolean)
 	async deleteWastedFood(@Args('_id') _id: string): Promise<boolean> {
+<<<<<<< HEAD
 		Logger.log(`function:deleteWastedFood, input: ${_id}`)
+=======
+		console.log(`function:deleteWastedFood, input: ${_id}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		console.log('-------' + _id)
 		const data = await this.servicesService.send('deleteWastedFood', _id)
 		console.log('++++++', data)

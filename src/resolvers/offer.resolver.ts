@@ -26,8 +26,13 @@ export class OfferResolver {
 	@Query(() => Offer)
 	async getOfferById(@Args('_id') _id: string): Promise<Offer> {
 		const data = await this.productService.send('getOfferById', _id)
+<<<<<<< HEAD
 		Logger.log('data: ', data)
 		Logger.log(`id : ${_id}`)
+=======
+		console.log('data: ', data)
+		console.log(`id : ${_id}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		if (data == null) {
 			throw new ApolloError('Offer déja supprimé +++++')
 		} else {
@@ -39,10 +44,17 @@ export class OfferResolver {
 
 	@Mutation(() => Offer)
 	async createOffer(@Args('input') input: CreateOfferInput): Promise<Offer> {
+<<<<<<< HEAD
 		// Logger.log(`function:createOffer`);
 		Logger.log(input)
 		const data = await this.productService.send('createOffer', input)
 		Logger.log(`function:createOffer, res: ${data}`)
+=======
+		// console.log(`function:createOffer`);
+		console.log(input)
+		const data = await this.productService.send('createOffer', input)
+		console.log(`function:createOffer, res: ${data}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -60,7 +72,11 @@ export class OfferResolver {
 
 	@Mutation(() => Boolean)
 	async deleteOffer(@Args('_id') _id: string): Promise<boolean> {
+<<<<<<< HEAD
 		Logger.log(`function:deleteOffer, input: ${_id}`)
+=======
+		console.log(`function:deleteOffer, input: ${_id}`)
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		console.log('-------' + _id)
 		const data = await this.productService.send('deleteOffer', _id)
 		console.log('++++++', data)
