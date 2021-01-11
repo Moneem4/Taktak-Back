@@ -18,21 +18,11 @@ type MessageItem {
 }
 
 type Query {
-<<<<<<< HEAD
-	messageItem(messageId: ID!): [MessageItem] #A voir si selon la conversation o le message 
-=======
 	messageItems(messageId: ID!): [MessageItem]
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 	messageItemById(_id: ID!): MessageItem
 }
 
 type Mutation {
-<<<<<<< HEAD
-	createMessageItem(input: CreateMessageItemInput!): MessageItem	
-	deleteMessageItem(_id: ID!):Boolean
-}
-=======
 	createMessageItem(input: CreateMessageItemInput!): MessageItem
 	deleteMessageItem(_id: ID!): Boolean
 }
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c

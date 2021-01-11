@@ -2,20 +2,14 @@ input CreateMenuInput {
 	name: String!
     contenu: String!
     createdAt: String
-<<<<<<< HEAD
-=======
 	description: String !
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
      deletedAt:String
      updatedAt: String
 }
 input UpdateMenuInput {
 	name: String !
     contenu: String !
-<<<<<<< HEAD
-=======
 	
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 }
 type Menu {
 	_id: ID!

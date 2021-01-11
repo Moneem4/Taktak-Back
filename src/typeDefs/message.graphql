@@ -1,11 +1,7 @@
 input CreateMessageInput {
 	text: String!
 	conversationId: ID!
-<<<<<<< HEAD
-	createdBy: ID! 
-=======
 	createdBy: ID!
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 }
 
 type Message {
@@ -13,14 +9,9 @@ type Message {
 	text: String
 	conversationId: ID!
 	createdBy: User
-<<<<<<< HEAD
-	createdAt: Float!
-	updatedAt: Float!
-=======
 	createdAt: String!
 	updatedAt: String!
 	deletedAt: String
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 }
 
 type Query {
