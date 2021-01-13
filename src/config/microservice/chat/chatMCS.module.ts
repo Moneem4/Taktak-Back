@@ -7,7 +7,7 @@ import { ChatMCS } from './chatMCS.service'
 	imports: [
 		ClientsModule.register([
 			{
-				name: 'CHAT-SERVICE',
+				name: 'chat',
 				transport: Transport.RMQ,
 				options: {
 					urls: [
