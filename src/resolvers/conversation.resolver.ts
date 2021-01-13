@@ -41,20 +41,14 @@ export class ConversationResolver {
 	): Promise<Conversation> {
 		console.log('heeereee')
 		const data = await this.chatService.send('createConversation', input)
-
-		return data
+		return data;
 	}
+	// -------------------------------------------------------------------------------------------------
 
 	@Mutation(() => Boolean)
 	async deleteConversation(@Args('_id') _id: String): Promise<boolean> {
-<<<<<<< HEAD
-		Logger.log(`function:deleteConversation, input: ${_id}`)
-=======
-		console.log(`function:deleteConversation, input: ${_id}`)
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
-		console.log('-------' + _id)
+		console.log(`function:deleteConversation, input: ${_id}`)		
 		const data = await this.chatService.send('deleteConversation', _id)
-
-		return data
+		return data;
 	}
 }

@@ -5,7 +5,8 @@ input CreateConversationInput {
 }
 
 input UpdateConversationInput {
-	lastMessageId: ID!
+	name: String
+	isBlocked: Boolean
 }
 
 type Conversation {
