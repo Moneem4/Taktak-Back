@@ -26,8 +26,8 @@ export class ServicesResolver {
 	async getServiceById(@Args('_id') _id: string): Promise<Service> {
 		const data = await this.servicesService.send('getServiceById', _id)
 
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		return data
 	}
 
@@ -35,8 +35,8 @@ export class ServicesResolver {
 	async getServicesByUserId(@Args('userId') userId: string): Promise<Service> {
 		const data = await this.servicesService.send('getServicesByUserId', userId)
 
-		console.log('data: ', data)
-		console.log(`id : ${userId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${userId}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -45,10 +45,10 @@ export class ServicesResolver {
 	async createService(
 		@Args('input') input: CreateServiceInput
 	): Promise<Service> {
-		console.log(input)
+		Logger.log(input)
 		const data = await this.servicesService.send('createService', input)
 
-		console.log(`function:createService, res: ${data}`)
+		Logger.log(`function:createService, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -67,7 +67,7 @@ export class ServicesResolver {
 
 	@Mutation(() => Boolean)
 	async deleteService(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteService, input: ${_id}`)
+		Logger.log(`function:deleteService, input: ${_id}`)
 		const data = await this.servicesService.send('deleteService', _id)
 
 		return data

@@ -147,7 +147,11 @@ export const tradeToken = async (user: User): Promise<LoginResponse> => {
 	}
 
 	if (!user.isActive) {
+<<<<<<< HEAD
+		throw new ForbiddenError("User already doesn't exist.")
+=======
 		throw new ForbiddenError('User already doesn\'t exist.')
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 	}
 
 	if (user.isLocked) {

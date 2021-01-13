@@ -27,8 +27,8 @@ export class EventInvitationResolver {
 		@Args('_id') _id: string
 	): Promise<EventInvitation> {
 		const data = await this.eventService.send('getEventInvitationById', _id)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		return data
 	}
 	@Query()
@@ -36,8 +36,8 @@ export class EventInvitationResolver {
 		@Args('eventId') eventId: string
 	): Promise<EventInvitation> {
 		const data = await this.eventService.send('getEventInvitationById', eventId)
-		console.log('data: ', data)
-		console.log(`id : ${eventId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${eventId}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -46,10 +46,10 @@ export class EventInvitationResolver {
 	async createEventInvitation(
 		@Args('input') input: CreateEventInvitationInput
 	): Promise<EventInvitation> {
-		// console.log(`function:createEventInvitation`);
-		console.log(input)
+		// Logger.log(`function:createEventInvitation`);
+		Logger.log(input)
 		const data = await this.eventService.send('createEventInvitation', input)
-		console.log(`function:createEventInvitation, res: ${data}`)
+		Logger.log(`function:createEventInvitation, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -70,7 +70,7 @@ export class EventInvitationResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventInvitation(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteEventInvitation, input: ${_id}`)
+		Logger.log(`function:deleteEventInvitation, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventInvitation', _id)
 		console.log('++++++', data)

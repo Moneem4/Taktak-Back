@@ -9,18 +9,18 @@ import { ApolloError, UserInputError } from 'apollo-server-express'
 import { ContractMCS } from '../config/microservice/contract/contractMCS.service'
 @Resolver('PageAdminContract')
 export class ServicePageAdminContractResolver {
-	constructor(private readonly contractService: ContractMCS) {
+	constructor(private readonly ContractService: ContractMCS) {
 		console.log('pageAdminContract.resolver')
 	}
 
 	@Query()
 	async getPageAdminContracts() {
-		// console.log(`function:getServicePageAdminContractComment, input: ${ServicePageAdminContractId}`);
-		const data = await this.contractService.send(
+		// Logger.log(`function:getServicePageAdminContractComment, input: ${ServicePageAdminContractId}`);
+		const data = await this.ContractService.send(
 			'getServicePageAdminContracts',
 			{}
 		)
-		// console.log(data);
+		// Logger.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -30,14 +30,14 @@ export class ServicePageAdminContractResolver {
 	async getPageAdminContractsById(
 		@Args('_id') _id: string
 	): Promise<PageAdminContract> {
-		const data = await this.contractService.send(
+		const data = await this.ContractService.send(
 			'getServicePageAdminContractById',
 			_id
 		)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		if (data == null) {
-			console.log(`data vide:`)
+			Logger.log(`data vide:`)
 			throw new ApolloError(
 				'getServicePageAdminContractById déja supprimé +++++'
 			)
@@ -49,12 +49,12 @@ export class ServicePageAdminContractResolver {
 	// ----------------------------------------------------------------------------------------------- finished
 	@Query()
 	async getPageAdminContractByContract(@Args('contractId') contractId: string) {
-		const data = await this.contractService.send(
+		const data = await this.ContractService.send(
 			'getServicePageAdminContractByContract',
 			contractId
 		)
-		console.log('data: ', data)
-		console.log(`id : ${contractId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -62,13 +62,13 @@ export class ServicePageAdminContractResolver {
 	async CreatePageAdminContract(
 		@Args('input') input: CreatePageAdminContractInput
 	): Promise<PageAdminContract> {
-		// console.log(`function:createServicePageAdminContract`);
-		console.log(input)
-		const data = await this.contractService.send(
+		// Logger.log(`function:createServicePageAdminContract`);
+		Logger.log(input)
+		const data = await this.ContractService.send(
 			'CreatePageAdminContract',
 			input
 		)
-		console.log(`function:CreatePageAdminContract, res: ${data}`)
+		Logger.log(`function:CreatePageAdminContract, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -79,7 +79,7 @@ export class ServicePageAdminContractResolver {
 		@Args('input') input: UpdatePageAdminContractInput
 	): Promise<PageAdminContract> {
 		const messageData = { _id, ...input }
-		const data = await this.contractService.send(
+		const data = await this.ContractService.send(
 			'updatePageAdminContract',
 			messageData
 		)
@@ -89,9 +89,9 @@ export class ServicePageAdminContractResolver {
 
 	@Mutation(() => Boolean)
 	async deletePageAdminContract(@Args('_id') _id: string): Promise<boolean> {
-		console.log(`function:deletePageAdminContract, input: ${_id}`)
+		Logger.log(`function:deletePageAdminContract, input: ${_id}`)
 		console.log('-------' + _id)
-		const data = await this.contractService.send('deletePageAdminContract', _id)
+		const data = await this.ContractService.send('deletePageAdminContract', _id)
 		console.log('++++++', data)
 		return data
 	}
@@ -99,7 +99,7 @@ export class ServicePageAdminContractResolver {
 
 	/*  @Mutation()
     async deleteServicePageAdminContractByContract(@Args('contractId')contractId: string): Promise<boolean> {
-        const data = await this.contractService.send('deletePageAdminContractByContract', contractId);
+        const data = await this.ContractService.send('deletePageAdminContractByContract', contractId);
         return data
     } */
 }

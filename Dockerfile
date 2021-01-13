@@ -4,7 +4,7 @@ FROM node:12.13.0
 WORKDIR /app
 
 # Copy application to / directory and install dependencies
-COPY package*.json ./
+COPY package.json ./
 RUN npm install
 COPY . .
 RUN npm run gen
@@ -13,4 +13,4 @@ RUN npm run build
 EXPOSE 4000
 
 # what should be executed when the Docker image is launching
-#CMD [ "npm", "run", "start:prod" ]
+CMD [ "npm", "run", "start" ]

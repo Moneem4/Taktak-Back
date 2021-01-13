@@ -25,7 +25,7 @@
 			"@validations": ["validations"]
 		}
 	},
-	"include": ["src/**/*.ts", "src/services/reviews/index.js", "src/resolvers/messageItem.resolver.ts"],
+	"include": ["src/**/*.ts", "src/services/reviews/index.js", "src/resolvers/messageItem.resolver.ts", "app.service.ts"],
 	"compileOnSave": false,
 	"exclude": [
 		"node_modules",

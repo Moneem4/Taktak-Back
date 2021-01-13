@@ -14,9 +14,9 @@ export class EventPackUserResolver {
 
 	@Query()
 	async getEventPackUsers() {
-		// console.log(`function:getEventPackUserComment, input: ${EventPackUserId}`);
+		// Logger.log(`function:getEventPackUserComment, input: ${EventPackUserId}`);
 		const data = await this.eventService.send('getEventPackUsers', {})
-		// console.log(data);
+		// Logger.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -27,15 +27,15 @@ export class EventPackUserResolver {
 		@Args('userId') userId: string
 	): Promise<EventPackUser> {
 		const data = await this.eventService.send('getEventPackUserById', userId)
-		console.log('data: ', data)
-		console.log(`id : ${userId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${userId}`)
 		return data
 	}
 	/* @Query()
     async getEventPackUsersByEvent(@Args('eventId') eventId: string): Promise<EventPackUser> {
         const data = await this.eventService.send( 'getEventPackUsersByEvent', eventId);
-        console.log("data: ",data);
-        console.log(`id : ${eventId}`);
+        Logger.log("data: ",data);
+        Logger.log(`id : ${eventId}`);
         return data;
     }    */
 	// ----------------------------------------------------------------------------------------------- finished
@@ -44,10 +44,10 @@ export class EventPackUserResolver {
 	async createEventPackUser(
 		@Args('input') input: CreateEventPackUserInput
 	): Promise<EventPackUser> {
-		// console.log(`function:createEventPackUser`);
-		console.log(input)
+		// Logger.log(`function:createEventPackUser`);
+		Logger.log(input)
 		const data = await this.eventService.send('createEventPackUser', input)
-		console.log(`function:createEventPackUser, res: ${data}`)
+		Logger.log(`function:createEventPackUser, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -68,7 +68,7 @@ export class EventPackUserResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventPackUser(@Args('_id') _id: string): Promise<boolean> {
-		console.log(`function:deleteEventPackUser, input: ${_id}`)
+		Logger.log(`function:deleteEventPackUser, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventPackUser', _id)
 		console.log('++++++', data)

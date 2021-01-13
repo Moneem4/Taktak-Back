@@ -15,9 +15,9 @@ export class EventTeamTasksResolver {
 
 	@Query()
 	async getEventTeamTasks() {
-		// console.log(`function:getEventTeamTasksComment, input: ${EventTeamTasksId}`);
+		// Logger.log(`function:getEventTeamTasksComment, input: ${EventTeamTasksId}`);
 		const data = await this.eventService.send('getEventTeamTasks', {})
-		// console.log(data);
+		// Logger.log(data);
 		return data
 	}
 	@Query()
@@ -25,8 +25,8 @@ export class EventTeamTasksResolver {
 		@Args('_id') _id: string
 	): Promise<EventTeamTasks> {
 		const data = await this.eventService.send('getEventTeamTaskById', _id)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		return data
 	}
 
@@ -36,10 +36,10 @@ export class EventTeamTasksResolver {
 	async createEventTeamTasks(
 		@Args('input') input: CreateEventTeamTasksInput
 	): Promise<EventTeamTasks> {
-		// console.log(`function:createEventTeamTasks`);
-		console.log(input)
+		// Logger.log(`function:createEventTeamTasks`);
+		Logger.log(input)
 		const data = await this.eventService.send('createEventTeamTasks', input)
-		console.log(`function:createEventTeamTasks, res: ${data}`)
+		Logger.log(`function:createEventTeamTasks, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -60,7 +60,7 @@ export class EventTeamTasksResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventTeamTasks(@Args('_id') _id: string): Promise<boolean> {
-		console.log(`function:deleteEventTeamTasks, input: ${_id}`)
+		Logger.log(`function:deleteEventTeamTasks, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.eventService.send('deleteEventTeamTasks', _id)
 		console.log('++++++', data)

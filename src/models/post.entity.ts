@@ -1,4 +1,4 @@
-import { Entity, ObjectIdColumn, Column } from 'typeorm'
+/* import { Entity, ObjectIdColumn, Column } from 'typeorm'
 import { Expose, plainToClass } from 'class-transformer'
 import * as uuid from 'uuid'
 import {
@@ -69,3 +69,4 @@ export class Post {
 		}
 	}
 }
+ */

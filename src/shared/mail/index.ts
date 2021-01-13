@@ -145,10 +145,17 @@ export const sendMail = async (
 		transporter.sendMail(mailOptions, (err, info) => {
 			if (err) {
 				console.log(err)
+<<<<<<< HEAD
+				// Logger.error(err.message)
+			} else {
+				console.log('Message sent: ' + JSON.parse(info))
+				// Logger.debug(info.response.message, 'Nodemailer')
+=======
 				// console.error(err.message)
 			} else {
 				console.log('Message sent: ' + JSON.parse(info))
 				// console.debug(info.response.message, 'Nodemailer')
+>>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 			}
 		})
 

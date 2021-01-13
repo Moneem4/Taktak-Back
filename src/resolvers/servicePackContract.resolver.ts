@@ -19,9 +19,9 @@ export class ServicePackContractResolver {
 
 	@Query()
 	async getServicePackContracts() {
-		//console.log(`function:getServicePackContractComment, input: ${ServicePackContractId}`);
+		//Logger.log(`function:getServicePackContractComment, input: ${ServicePackContractId}`);
 		const data = await this.ContractService.send('getServicePackContracts', {})
-		//console.log(data);
+		//Logger.log(data);
 		return data
 	}
 	//to check {Access null ...}
@@ -35,10 +35,10 @@ export class ServicePackContractResolver {
 			'getServicePackContractById',
 			_id
 		)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		if (data == null) {
-			console.log(`data vide:`)
+			Logger.log(`data vide:`)
 			throw new ApolloError('getServicePackContractById déja supprimé +++++')
 		} else return data
 	}
@@ -52,8 +52,8 @@ export class ServicePackContractResolver {
 			'getServicePackContractByContract',
 			contractId
 		)
-		console.log('data: ', data)
-		console.log(`id : ${contractId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -61,13 +61,13 @@ export class ServicePackContractResolver {
 	async createServicePackContract(
 		@Args('input') input: CreateServicePackContractInput
 	): Promise<ServicePackContract> {
-		//console.log(`function:createServicePackContract`);
-		console.log(input)
+		//Logger.log(`function:createServicePackContract`);
+		Logger.log(input)
 		const data = await this.ContractService.send(
 			'CreateServicePackContract',
 			input
 		)
-		console.log(`function:CreateServicePackContract, res: ${data}`)
+		Logger.log(`function:CreateServicePackContract, res: ${data}`)
 		return data
 	}
 	//----------------------------------------------------------------------------------------------- finished
@@ -88,7 +88,7 @@ export class ServicePackContractResolver {
 
 	@Mutation(() => Boolean)
 	async deleteServicePackContract(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteServicePackContract, input: ${_id}`)
+		Logger.log(`function:deleteServicePackContract, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.ContractService.send(
 			'deleteServicePackContract',
