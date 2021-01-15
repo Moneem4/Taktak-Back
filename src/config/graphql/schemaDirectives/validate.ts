@@ -30,11 +30,7 @@ class ValidateDirective extends SchemaDirectiveVisitor {
 		field.resolve = async function(...args) {
 			const { input } = args[1]
 
-<<<<<<< HEAD
-			Logger.log(
-=======
 			console.log(
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 				`🧪  Schema: ${chalk.hex(PRIMARY_COLOR!).bold(`${schema!}`)}`,
 				'Validator',
 				false

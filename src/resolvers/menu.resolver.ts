@@ -26,13 +26,8 @@ export class MenuResolver {
 	@Query(() => Menu)
 	async getMenuById(@Args('_id') _id: string): Promise<Menu> {
 		const data = await this.productService.send('getMenuById', _id)
-<<<<<<< HEAD
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
-=======
 		console.log('data: ', data)
 		console.log(`id : ${_id}`)
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		if (data == null) {
 			throw new ApolloError('Menu déja supprimé +++++')
 		} else {
@@ -44,17 +39,10 @@ export class MenuResolver {
 
 	@Mutation(() => Menu)
 	async createMenu(@Args('input') input: CreateMenuInput): Promise<Menu> {
-<<<<<<< HEAD
-		// Logger.log(`function:createMenu`);
-		Logger.log(input)
-		const data = await this.productService.send('createMenu', input)
-		Logger.log(`function:createMenu, res: ${data}`)
-=======
 		// console.log(`function:createMenu`);
 		console.log(input)
 		const data = await this.productService.send('createMenu', input)
 		console.log(`function:createMenu, res: ${data}`)
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -72,11 +60,7 @@ export class MenuResolver {
 
 	@Mutation(() => Boolean)
 	async deleteMenu(@Args('_id') _id: string): Promise<boolean> {
-<<<<<<< HEAD
-		Logger.log(`function:deleteMenu, input: ${_id}`)
-=======
 		console.log(`function:deleteMenu, input: ${_id}`)
->>>>>>> 7c7d3bb85c9b9612e66b9dca906efde7be340b7c
 		console.log('-------' + _id)
 		const data = await this.productService.send('deleteMenu', _id)
 		console.log('++++++', data)
