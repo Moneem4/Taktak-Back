@@ -5,6 +5,8 @@ input CreateEatWithStrangerInput {
     quantity:Float!
      strangerId:ID!
      address:String!
+    strangerName: String!
+    restaurantId: ID!
     createdAt: String
     deletedAt:String
 	updatedAt: String
@@ -36,9 +38,9 @@ type Query {
 }
 
 type Mutation {
-	createEatWithStranger(input: CreateEatWithStrangerInput!): EatWithStranger
-    updateEatWithStranger(_id: String, input: UpdateEatWithStrangerInput): EatWithStranger
-	deleteEatWithStranger(_id: ID!):Boolean!
+	createEatwithStranger(input: CreateEatWithStrangerInput!): EatWithStranger
+    updateEatwithStranger(_id: String, input: UpdateEatWithStrangerInput): EatWithStranger
+	deleteEatwithStranger(_id: ID!):Boolean!
 	
    
 }

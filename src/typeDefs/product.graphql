@@ -4,12 +4,12 @@ input CreateProductInput {
     description: String!
 	price: Float!
     quantity:Float!
+	menu:ID!
 }
 input UpdateProductInput {
 	name: String
 	price: Float!
     quantity:Float!
-    
     description: String
 }
 type Product {
@@ -20,6 +20,8 @@ type Product {
 	description: String!
 	createdAt: String!
 	updatedAt: String!
+	 menu: Menu! 
+	offers:[Offer]
 }
 
 type Query {

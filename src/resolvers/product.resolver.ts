@@ -16,7 +16,7 @@ export class ProductResolver {
 
 	@Query()
 	async getProducts() {
-		const data = await this.productService.send('getProducts', {})
+		const data = await this.productService.send('getProductsT', {})
 
 		return data
 	}
@@ -25,7 +25,7 @@ export class ProductResolver {
 
 	@Query(() => Product)
 	async getProductById(@Args('_id') _id: string): Promise<Product> {
-		const data = await this.productService.send('getProductById', _id)
+		const data = await this.productService.send('getProductByIdT', _id)
 		console.log('data: ', data)
 		console.log(`id : ${_id}`)
 		if (data == null) {
@@ -43,9 +43,11 @@ export class ProductResolver {
 	): Promise<Product> {
 		// console.log(`function:createProduct`);
 		console.log(input)
-		const data = await this.productService.send('createProduct', input)
-		console.log(`function:createProduct, res: ${data}`)
-		return data
+		const data = await this.productService.send('createProductT', input)
+		if(data==null)
+		{throw new ApolloError('verify the category or the menu  of the product, maybe doesn t exist ')}
+		else
+		{return data }
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
@@ -55,7 +57,7 @@ export class ProductResolver {
 		@Args('input') input: UpdateProductInput
 	): Promise<Product> {
 		const messageData = { _id, ...input }
-		const data = await this.productService.send('updateProduct', messageData)
+		const data = await this.productService.send('updateProductT', messageData)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -63,9 +65,9 @@ export class ProductResolver {
 	@Mutation(() => Boolean)
 	async deleteProduct(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteProduct, input: ${_id}`)
-		console.log('-------' + _id)
-		const data = await this.productService.send('deleteProduct', _id)
-		console.log('++++++', data)
+		
+		const data = await this.productService.send('deleteProductT', _id)
+		
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
