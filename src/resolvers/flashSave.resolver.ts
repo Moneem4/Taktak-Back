@@ -45,6 +45,8 @@ export class FlashSaveResolver {
 		console.log(input)
 		const data = await this.servicesService.send('createFlashSave', input)
 		console.log(`function:createFlashSave, res: ${data}`)
+		if(data==null)
+		{	throw new ApolloError('verifier le service de flashsave,peut etre n exisete pas')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -63,9 +65,10 @@ export class FlashSaveResolver {
 	@Mutation(() => Boolean)
 	async deleteFlashSave(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteFlashSave, input: ${_id}`)
-		console.log('-------' + _id)
+		
 		const data = await this.servicesService.send('deleteFlashSave', _id)
-		console.log('++++++', data)
+		if(data==false)
+		{	throw new ApolloError('entity already deleted')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished

@@ -6,9 +6,9 @@ import {
 	UpdateServiceInput,
 	Service
 } from '../generator/graphql.schema'
-import { Logger, Inject } from '@nestjs/common'
-import { ClientProxy } from '@nestjs/microservices'
+import { Logger } from '@nestjs/common'
 import { ServiceMCS } from '../config/microservice/service/serviceMCS.service'
+import { ApolloError } from 'apollo-server'
 @Resolver('Services')
 export class ServicesResolver {
 	constructor(private readonly servicesService: ServiceMCS) {
@@ -25,9 +25,9 @@ export class ServicesResolver {
 	@Query(() => Service)
 	async getServiceById(@Args('_id') _id: string): Promise<Service> {
 		const data = await this.servicesService.send('getServiceById', _id)
-
-		Logger.log('data: ', data)
-		Logger.log(`id : ${_id}`)
+		if(data==null)
+		{	throw new ApolloError('service already deleted')}
+	
 		return data
 	}
 
@@ -69,7 +69,8 @@ export class ServicesResolver {
 	async deleteService(@Args('_id') _id: String): Promise<boolean> {
 		Logger.log(`function:deleteService, input: ${_id}`)
 		const data = await this.servicesService.send('deleteService', _id)
-
+		if(data==null)
+		{	throw new ApolloError('service already deleted')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished

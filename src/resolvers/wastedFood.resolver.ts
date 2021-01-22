@@ -41,10 +41,12 @@ export class WastedFoodResolver {
 	async createWastedFood(
 		@Args('input') input: CreateWastedFoodInput
 	): Promise<WastedFood> {
-		// console.log(`function:createWastedFood`);
-		console.log(input)
+		
+		
 		const data = await this.servicesService.send('createWastedFood', input)
 		console.log(`function:createWastedFood, res: ${data}`)
+		if(data==null)
+		{	throw new ApolloError('verifier le service de wasted food ,peut etre n exisete pas')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -66,10 +68,13 @@ export class WastedFoodResolver {
 	@Mutation(() => Boolean)
 	async deleteWastedFood(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteWastedFood, input: ${_id}`)
-		console.log('-------' + _id)
+		
 		const data = await this.servicesService.send('deleteWastedFood', _id)
-		console.log('++++++', data)
+		if(data==false)
+		{	throw new ApolloError('WastedFood déja supprimé +++++')}
+		
 		return data
+		
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 }

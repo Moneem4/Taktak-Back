@@ -7,9 +7,11 @@ input CreateEatWithStrangerInput {
      address:String!
     strangerName: String!
     restaurantId: ID!
+    service:ID!
     createdAt: String
     deletedAt:String
 	updatedAt: String
+
 }
 input UpdateEatWithStrangerInput {
 	name: String
@@ -29,6 +31,7 @@ type EatWithStranger {
 	createdAt: String!
     deletedAt:String!
 	updatedAt: String!
+    service:Service!
    
 }
 
