@@ -58,9 +58,10 @@ export class EatWithStrangerResolver {
 		@Args('_id') _id: string,
 		@Args('input') input: UpdateEatWithStrangerInput
 	): Promise<EatWithStranger> {
+		console.log(_id);
 		const messageData = { _id, ...input }
 		const data = await this.servicesService.send(
-			'updateEatwithStranger',
+			'updateEatWithStranger',
 			messageData
 		)
 		return data

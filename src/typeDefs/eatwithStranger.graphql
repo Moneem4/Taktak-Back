@@ -16,7 +16,7 @@ input CreateEatWithStrangerInput {
 input UpdateEatWithStrangerInput {
 	name: String
 	price: Float!
-    quantity:Float!
+    quantity:Int!
     description: String!
 }
 type EatWithStranger {
