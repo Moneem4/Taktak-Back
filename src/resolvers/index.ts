@@ -30,6 +30,6 @@ export * from './offer.resolver'
 export * from './service.resolver'
 export * from './rating.resolver'
 export * from './wastedFood.resolver'
-export * from './flashsave.resolver'
+export * from './flashSave.resolver'
 export * from './product.resolver'
 
