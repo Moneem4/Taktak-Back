@@ -1,4 +1,4 @@
-/* import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql'
+import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql'
 import {
 	CreateContractCloseInput,
 	UpdateContractCloseInput,
@@ -26,10 +26,10 @@ export class ContractCloseResolver {
 	@Query(() => ContractClose)
 	async getContractCloseById(@Args('_id') _id: string): Promise<ContractClose> {
 		const data = await this.contractService.send('getContractCloseById', _id)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		if (data == null) {
-			console.log(`data vide:`)
+			Logger.log(`data vide:`)
 			throw new ApolloError('ContractClose déja supprimé +++++')
 		} else {
 			return data
@@ -43,8 +43,8 @@ export class ContractCloseResolver {
 			'getContractCloseByContract',
 			contractId
 		)
-		console.log('data: ', data)
-		console.log(`id : ${contractId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${contractId}`)
 
 		return data
 	}
@@ -52,10 +52,10 @@ export class ContractCloseResolver {
 	async createContractClose(
 		@Args('input') input: CreateContractCloseInput
 	): Promise<ContractClose> {
-		// console.log(`function:createContractClose`);
-		console.log(input)
+		// Logger.log(`function:createContractClose`);
+		Logger.log(input)
 		const data = await this.contractService.send('CreateContractClose', input)
-		console.log(`function:CreateContractClose, res: ${data}`)
+		Logger.log(`function:CreateContractClose, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -76,7 +76,7 @@ export class ContractCloseResolver {
 
 	@Mutation(() => Boolean)
 	async deleteContractClose(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteContractClose, input: ${_id}`)
+		Logger.log(`function:deleteContractClose, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.contractService.send('deleteContractClose', _id)
 		console.log('++++++', data)
@@ -84,4 +84,3 @@ export class ContractCloseResolver {
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 }
- */

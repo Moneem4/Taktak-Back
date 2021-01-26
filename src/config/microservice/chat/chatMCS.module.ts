@@ -10,8 +10,8 @@ import { ChatMCS } from './chatMCS.service'
 				name: 'CHAT-SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakChats'],
-					queue: 'taktakChats',
+					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakChat'],
+					queue: 'taktakChat',
 					noAck: true,
 					queueOptions: {
 						durable: true

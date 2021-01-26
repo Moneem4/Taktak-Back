@@ -4,7 +4,7 @@ import {
 	UpdateOfferInput,
 	Offer
 } from '../generator/graphql.schema'
-import { Logger } from '@nestjs/common'
+
 import { ApolloError } from 'apollo-server-express'
 import { ProductMCS } from '../config/microservice/product/productMCS.service'
 
@@ -16,7 +16,7 @@ export class OfferResolver {
 
 	@Query()
 	async getOffers() {
-		const data = await this.productService.send('getOffers', {})
+		const data = await this.productService.send('getOffersT', {})
 
 		return data
 	}
@@ -25,7 +25,7 @@ export class OfferResolver {
 
 	@Query(() => Offer)
 	async getOfferById(@Args('_id') _id: string): Promise<Offer> {
-		const data = await this.productService.send('getOfferById', _id)
+		const data = await this.productService.send('getOfferByIdT', _id)
 		console.log('data: ', data)
 		console.log(`id : ${_id}`)
 		if (data == null) {
@@ -41,9 +41,11 @@ export class OfferResolver {
 	async createOffer(@Args('input') input: CreateOfferInput): Promise<Offer> {
 		// console.log(`function:createOffer`);
 		console.log(input)
-		const data = await this.productService.send('createOffer', input)
-		console.log(`function:createOffer, res: ${data}`)
-		return data
+		const data = await this.productService.send('createOfferT', input)
+		if(data==null)
+		{throw new ApolloError('verify the product of the offer, maybe doesn t exist ')}
+		else
+		{return data }
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
@@ -53,7 +55,7 @@ export class OfferResolver {
 		@Args('input') input: UpdateOfferInput
 	): Promise<Offer> {
 		const messageData = { _id, ...input }
-		const data = await this.productService.send('updateOffer', messageData)
+		const data = await this.productService.send('updateOfferT', messageData)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -61,8 +63,8 @@ export class OfferResolver {
 	@Mutation(() => Boolean)
 	async deleteOffer(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteOffer, input: ${_id}`)
-		console.log('-------' + _id)
-		const data = await this.productService.send('deleteOffer', _id)
+		
+		const data = await this.productService.send('deleteOfferT', _id)
 		console.log('++++++', data)
 		return data
 	}

@@ -14,9 +14,9 @@ export class EventPackContractContractResolver {
 
 	@Query()
 	async getEventPackContracts() {
-		// console.log(`function:getEventPackContractComment, input: ${EventPackContractId}`);
+		// Logger.log(`function:getEventPackContractComment, input: ${EventPackContractId}`);
 		const data = await this.ContractService.send('getEventPackContracts', {})
-		// console.log(data);
+		// Logger.log(data);
 		return data
 	}
 	// to check {Access null ...}
@@ -30,8 +30,8 @@ export class EventPackContractContractResolver {
 			'getEventPackContractById',
 			_id
 		)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${_id}`)
 		return data
 	}
 	@Query()
@@ -42,8 +42,8 @@ export class EventPackContractContractResolver {
 			'getEventPackContractsByEvent',
 			eventId
 		)
-		console.log('data: ', data)
-		console.log(`id : ${eventId}`)
+		Logger.log('data: ', data)
+		Logger.log(`id : ${eventId}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -52,13 +52,13 @@ export class EventPackContractContractResolver {
 	async createEventPackContract(
 		@Args('input') input: CreateEventPackContractInput
 	): Promise<EventPackContract> {
-		// console.log(`function:createEventPackContract`);
-		console.log(input)
+		// Logger.log(`function:createEventPackContract`);
+		Logger.log(input)
 		const data = await this.ContractService.send(
 			'createEventPackContract',
 			input
 		)
-		console.log(`function:createEventPackContract, res: ${data}`)
+		Logger.log(`function:createEventPackContract, res: ${data}`)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -79,7 +79,7 @@ export class EventPackContractContractResolver {
 
 	@Mutation(() => Boolean)
 	async deleteEventPackContract(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteEventPackContract, input: ${_id}`)
+		Logger.log(`function:deleteEventPackContract, input: ${_id}`)
 		console.log('-------' + _id)
 		const data = await this.ContractService.send('deleteEventPackContract', _id)
 		console.log('++++++', data)

@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  #App
+  app:
+    build:
+      context: ./
+    expose:
+      - 4060
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /app
+    restart: always
+    depends_on:
+      - taktak-rabbitmq
+      - taktak-mongo
+    command: npm run start
+    ports:
+      - 4060:4060
+  #chat microservice
+  mcs-chat:
+    restart: always
+    build:
+      context: ./mcs/chat/
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /app
+    depends_on:
+      - taktak-rabbitmq
+      - taktak-mongo
+    command: npm run start
+  #products microservice
+  mcs-products:
+    build:
+      context: ./mcs/products/
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /app
+    depends_on:
+      - taktak-rabbitmq
+      - taktak-mongo
+    command: npm run start
+  #services microservice
+  mcs-services:
+    restart: always
+    build:
+      context: ./mcs/services/
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /app
+    depends_on:
+      - taktak-rabbitmq
+      - taktak-mongo
+    command: npm run start
+  #post microservice
+  mcs-post:
+    build:
+      context: ./mcs/post/
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /app
+    depends_on:
+      - taktak-rabbitmq
+      - taktak-mongo
+    command: npm run start
+  #mongo
+  taktak-mongo:
+    image: mongo
+    command: mongod --port 27019
+    ports:
+      - 27019:27019
+    volumes:
+      - ./.docker/db:/data/db
+  #Rabbitmq
+  taktak-rabbitmq:
+    build:
+      context: ./taktak-rabbitmq/
+      dockerfile: Dockerfile
+    container_name: taktak-rabbitmq
+    restart: always
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    ports:
+      - 5674:5674
+      - 15674:15674
+volumes:
+  taktak-rabbitmq:

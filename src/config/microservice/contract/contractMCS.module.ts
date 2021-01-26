@@ -10,8 +10,8 @@ import { ContractMCS } from './contractMCS.service'
 				name: 'CONTRACT-SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakService'],
-					queue: 'taktakServices',
+					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakContract'],
+					queue: 'taktakContract',
 					noAck: false,
 					queueOptions: {
 						durable: true
