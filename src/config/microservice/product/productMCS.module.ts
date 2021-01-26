@@ -14,7 +14,7 @@ import { ProductMCS } from './productMCS.service'
 						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_PRODUCT_VHOST}`
 					],
 					queue: `${process.env.RABBITMQ_MCS_PRODUCT_QUEUE}`,
-					noAck: true,
+					noAck: false,
 					queueOptions: {
 						durable: true
 					}

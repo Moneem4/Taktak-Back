@@ -14,7 +14,7 @@ import { ServiceMCS } from './serviceMCS.service'
 						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_SERVICE_VHOST}`
 					],
 					queue: `${process.env.RABBITMQ_MCS_SERVICE_QUEUE}`,
-					noAck: true,
+					noAck: false,
 					queueOptions: {
 						durable: true
 					}

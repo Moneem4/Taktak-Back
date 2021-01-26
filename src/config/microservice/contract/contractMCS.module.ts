@@ -10,8 +10,10 @@ import { ContractMCS } from './contractMCS.service'
 				name: 'CONTRACT-SERVICE',
 				transport: Transport.RMQ,
 				options: {
-					urls: ['amqp://taktak:taktak@127.0.0.1:5672/taktakContract'],
-					queue: 'taktakContract',
+					urls: [
+						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_CONTRACT_VHOST}`
+					],
+					queue: `${process.env.RABBITMQ_MCS_CONTRACT_QUEUE}`,
 					noAck: false,
 					queueOptions: {
 						durable: true
