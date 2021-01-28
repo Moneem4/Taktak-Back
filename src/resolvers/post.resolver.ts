@@ -1,8 +1,9 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
-import { Post } from '@models'
+//import { Post } from '@models'
 import {
 	CreatePostInput,
 	UpdatePostInput,
+	Post
 	
 } from '../generator/graphql.schema'
 import { Logger } from '@nestjs/common'

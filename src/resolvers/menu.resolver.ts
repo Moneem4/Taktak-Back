@@ -61,7 +61,7 @@ export class MenuResolver {
 	@Mutation(() => Boolean)
 	async deleteMenu(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteMenu, input: ${_id}`)
-		console.log('-------' + _id)
+	
 		const data = await this.productService.send('deleteMenu', _id)
 		console.log('++++++', data)
 		return data

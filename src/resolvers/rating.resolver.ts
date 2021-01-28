@@ -61,9 +61,7 @@ export class RatingResolver {
 	@Mutation(() => Boolean)
 	async deleteRating(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteRating, input: ${_id}`)
-		console.log('-------' + _id)
 		const data = await this.ratingService.send('deleteRating', _id)
-		console.log('++++++', data)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished

@@ -2,8 +2,7 @@ import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 
 import { PostLike } from '@models'
 import { CreatePostLikeInput } from '../generator/graphql.schema'
-import { Logger, Inject } from '@nestjs/common'
-import { ClientProxy } from '@nestjs/microservices'
+
 import { PostMCS } from '../config/microservice/post/postMCS.service'
 
 @Resolver('PostLike')

@@ -6,6 +6,7 @@ enum ServiceType {
 enum Access {
 	PRIVATE
 	PUBLIC
+	BLACK_LISTED
 }
 
 input CreateServiceInput {
@@ -15,6 +16,8 @@ input CreateServiceInput {
 	serviceType: ServiceType!
 	validation:Boolean!
 	filter: String!
+	location: String!
+	serviceAccess: Access
 	
 }
 
@@ -23,6 +26,8 @@ input UpdateServiceInput {
 	description: String
 	serviceType: ServiceType!
 	serviceAccess: Access!
+	location: String!
+	updatedAt: String
 }
 
 type Service {
@@ -30,11 +35,17 @@ type Service {
 	userId: ID!
 	title: String!
 	description: String!
+	location: String!
 	filter: String!
 	serviceType: ServiceType!
+	wastedFoods:[WastedFood]
+	flashSaves:[FlashSave]
+	eatwithStrangers:[EatWithStranger]
 	validation:Boolean!
-	createdAt: Float!
-	updatedAt: Float!
+	serviceAccess: Access!
+	deletedAt:String !
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Query {

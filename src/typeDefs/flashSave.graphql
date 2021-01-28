@@ -3,9 +3,11 @@ input CreateFlashSaveInput {
     description: String!
     quantity:Float!
      price:Float!
-    createdAt: String!
-    deletedAt:String!
-	updatedAt: String!
+    createdAt: String
+    deletedAt:String
+	updatedAt: String
+	restaurantId:ID!
+	service:ID!
 }
 input UpdateFlashSaveInput {
 	name: String
@@ -20,6 +22,8 @@ type FlashSave {
 	createdAt: String!
     deletedAt:String!
     price:Float!
+	service:Service!
+	restaurantId:ID!
 	updatedAt: String!
 }
 

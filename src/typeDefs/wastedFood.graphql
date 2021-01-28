@@ -3,10 +3,12 @@ input CreateWastedFoodInput {
     description: String!
 	price: Float!
     quantity:Float!
-    createdAt: String!
+    createdAt: String
      utility:String!
-    deletedAt:String!
-	updatedAt: String!
+    deletedAt:String
+	service:ID!
+    restaurantId:ID!
+	updatedAt: String
 }
 input UpdateWastedFoodInput {
 	name: String
@@ -20,8 +22,11 @@ type WastedFood {
 	description: String!
     foods:[Product]!
     utility:String!
-    restaurantId:ID!
+	price:Float !
+	quantity:Int ! 
 	createdAt: String!
+	service:Service!
+	 restaurantId:ID!
     deletedAt:String!
 	updatedAt: String!
 }

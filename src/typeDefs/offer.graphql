@@ -7,6 +7,13 @@
  input CreateOfferInput {
 	name: String!
     contenu: String!
+     startDate:String!
+    expirationDate:String!
+    percentage:Float!
+    quantity:Int! 
+   state: Statetype!
+   product:ID!
+   description:String!
     createdAt: String
      deletedAt:String
      updatedAt: String
@@ -14,6 +21,10 @@
 input UpdateOfferInput {
 	name: String !
     contenu: String !
+     percentage:Float!
+    quantity:Float! 
+   state: Statetype!
+   description:String!
 }
 type Offer {
 	_id:ID!
@@ -27,7 +38,7 @@ type Offer {
 	updatedAt:String!
     startDate:String!
     expirationDate:String!
-	products:[Product]
+	product:Product
     ratings:[Rating]
 }
 

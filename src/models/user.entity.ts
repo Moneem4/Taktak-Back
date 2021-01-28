@@ -53,13 +53,7 @@ export class User {
 	@Column()
 	resetPasswordExpires: number
 
-	// @Expose()
-	// get fullName(): string {
-	// 	return `${this.firstName} ${this.lastName}`;
-	// }
-
-	// @Transform(role => role.name)
-	// role: RoleEntity;
+	
 
 	@Expose()
 	@Column()

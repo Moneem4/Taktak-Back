@@ -104,7 +104,7 @@ export class GraphqlService implements GqlOptionsFactory {
 				return new Promise((resolve, reject) => {
 					// Replace the `true` in this conditional with more specific checks!
 					if (true) {
-						resolve()
+						resolve(true)
 					} else {
 						reject()
 					}

@@ -5,6 +5,7 @@ input CreateMenuInput {
 	description: String !
      deletedAt:String
      updatedAt: String
+	
 }
 input UpdateMenuInput {
 	name: String !

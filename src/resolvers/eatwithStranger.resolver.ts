@@ -45,8 +45,10 @@ export class EatWithStrangerResolver {
 	): Promise<EatWithStranger> {
 		// console.log(`function:createEatwithStranger`);
 		console.log(input)
-		const data = await this.servicesService.send('createEatwithStranger', input)
+		const data = await this.servicesService.send('createEatWithStranger', input)
 		console.log(`function:createEatwithStranger, res: ${data}`)
+		if(data==null)
+		{	throw new ApolloError('verifier le service de cet entité,peut etre n exisete pas')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
@@ -56,9 +58,10 @@ export class EatWithStrangerResolver {
 		@Args('_id') _id: string,
 		@Args('input') input: UpdateEatWithStrangerInput
 	): Promise<EatWithStranger> {
+		console.log(_id);
 		const messageData = { _id, ...input }
 		const data = await this.servicesService.send(
-			'updateEatwithStranger',
+			'updateEatWithStranger',
 			messageData
 		)
 		return data
@@ -68,9 +71,10 @@ export class EatWithStrangerResolver {
 	@Mutation(() => Boolean)
 	async deleteEatwithStranger(@Args('_id') _id: string): Promise<boolean> {
 		console.log(`function:deleteEatwithStranger, input: ${_id}`)
-		console.log('-------' + _id)
+	
 		const data = await this.servicesService.send('deleteEatwithStranger', _id)
-		console.log('++++++', data)
+		if(data==null)
+		{	throw new ApolloError('entity already deleted')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished

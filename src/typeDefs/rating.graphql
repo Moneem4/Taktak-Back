@@ -13,6 +13,7 @@ input CreateRatingInput {
 input UpdateRatingInput {
 	name: String !
     contenu: String !
+    updatedAt: String
 }
 type Rating {
 	_id: ID!

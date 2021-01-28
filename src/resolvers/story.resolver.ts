@@ -1,9 +1,10 @@
 import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql'
-import { Post } from '@models'
+//import { Post } from '@models'
 import {
 	CreateStoryInput,
 	Story,
-	User
+	User,
+	Post
 } from '../generator/graphql.schema'
 import { Logger, Inject } from '@nestjs/common'
 import { ClientProxy } from '@nestjs/microservices'
