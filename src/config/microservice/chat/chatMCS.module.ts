@@ -11,9 +11,9 @@ import { ChatMCS } from './chatMCS.service'
 				transport: Transport.RMQ,
 				options: {
 					urls: [
-						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_CHAT_VHOST}`
+						`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}/${process.env.RABBITMQ_MCS_POST_VHOST}`
 					],
-					queue: `${process.env.RABBITMQ_MCS_CHAT_QUEUE}`,
+					queue: `${process.env.RABBITMQ_MCS_POST_QUEUE}`,
 					noAck: false,
 					queueOptions: {
 						durable: true

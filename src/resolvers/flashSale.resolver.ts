@@ -9,7 +9,7 @@ import { ApolloError } from 'apollo-server-express'
 import { ServiceMCS } from 'config/microservice/service/serviceMCS.service'
 
 @Resolver('FlashSave')
-export class FlashSaveResolver {
+export class FlashSaleResolver {
 	constructor(private readonly servicesService: ServiceMCS) {
 		console.log('FlashSave.resolver')
 	}

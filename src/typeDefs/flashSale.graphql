@@ -1,4 +1,4 @@
-input CreateFlashSaveInput {
+input CreateFlashSaleInput {
 	name: String!
     description: String!
     quantity:Float!
@@ -9,13 +9,13 @@ input CreateFlashSaveInput {
 	restaurantId:ID!
 	service:ID!
 }
-input UpdateFlashSaveInput {
+input UpdateFlashSaleInput {
 	name: String
 	price: Float!
     quantity:Float!
     description: String
 }
-type FlashSave {
+type FlashSale {
 	_id: ID!	
 	name: String!
 	description: String!
@@ -28,14 +28,13 @@ type FlashSave {
 }
 
 type Query {
-	getFlashSaves: [FlashSave]
-	getFlashSaveById(_id: ID!): FlashSave
+	getFlashSale: [FlashSale]
+	getFlashSaleById(_id: ID!): FlashSale
 }
 
 type Mutation {
-	createFlashSave(input: CreateFlashSaveInput!): FlashSave
-    updateFlashSave(_id: String, input: UpdateFlashSaveInput): FlashSave
-	deleteFlashSave(_id: ID!):Boolean!
-	
+	createFlashSale(input: CreateFlashSaleInput!): FlashSale
+    updateFlashSale(_id: String, input: UpdateFlashSaleInput): FlashSale
+	deleteFlashSale(_id: ID!):Boolean!
    
 }
