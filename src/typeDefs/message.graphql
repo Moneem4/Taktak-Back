@@ -10,7 +10,7 @@ type Message {
 	conversationId: ID!
 	createdBy: User
 	createdAt: String!
-	updatedAt: String!
+	updatedAt: String
 	deletedAt: String
 }
 

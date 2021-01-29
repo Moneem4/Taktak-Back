@@ -19,6 +19,14 @@ export class PostLikeResolver {
 	}
 	//-------------------------------------------------------------------------------------------------------- 
 
+	@Query()
+	async postLikeByUserId(@Args('userId') userId: string) {
+		//console.log(`function:getPostComment, input: ${postId}`);
+		const data = await this.postService.send('getPostLikeByUserId', userId);
+		return data;
+	}
+	//-------------------------------------------------------------------------------------------------------- 
+
 	@Query(() => PostLike)
 	async postLikeById(@Args('_id') _id: string): Promise<PostLike> {
 		const data = await this.postService.send('getPostLikeById', _id);

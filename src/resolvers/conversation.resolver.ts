@@ -28,12 +28,10 @@ export class ConversationResolver {
 	// -------------------------------------------------------------------------------------------------
 
 	@Query(() => Conversation)
-	async conversationsByUserId(@Args('_id') _id: string): Promise<Conversation> {
+	async conversationsByUserId(@Args('userId') userId: string): Promise<Conversation> {
 		console.log('im here')
-		const data = await this.chatService.send('getConversationsByUserId', _id)
-
-		console.log('resolver data: ', data)
-		return data
+		const data = await this.chatService.send('getConversationsByUserId',userId)		
+		return data;
 	}
 	// -------------------------------------------------------------------------------------------------
 
@@ -43,16 +41,14 @@ export class ConversationResolver {
 	): Promise<Conversation> {
 		console.log('heeereee')
 		const data = await this.chatService.send('createConversation', input)
-
-		return data
+		return data;
 	}
+	// -------------------------------------------------------------------------------------------------
 
 	@Mutation(() => Boolean)
 	async deleteConversation(@Args('_id') _id: String): Promise<boolean> {
-		console.log(`function:deleteConversation, input: ${_id}`)
-		console.log('-------' + _id)
+		console.log(`function:deleteConversation, input: ${_id}`)		
 		const data = await this.chatService.send('deleteConversation', _id)
-
-		return data
+		return data;
 	}
 }

@@ -1,15 +1,15 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 import {
-	CreateFlashSaveInput,
-	UpdateFlashSaveInput,
-	FlashSave
+	CreateFlashSaleInput,
+	UpdateFlashSaleInput,
+	FlashSale
 } from '../generator/graphql.schema'
 import { Logger } from '@nestjs/common'
 import { ApolloError } from 'apollo-server-express'
 import { ServiceMCS } from 'config/microservice/service/serviceMCS.service'
 
 @Resolver('FlashSave')
-export class FlashSaveResolver {
+export class FlashSaleResolver {
 	constructor(private readonly servicesService: ServiceMCS) {
 		console.log('FlashSave.resolver')
 	}
@@ -23,8 +23,8 @@ export class FlashSaveResolver {
 
 	// -------------------------------------------------------------------------------------------------------- finished
 
-	@Query(() => FlashSave)
-	async getFlashSaveById(@Args('_id') _id: string): Promise<FlashSave> {
+	@Query(() => FlashSale)
+	async getFlashSaveById(@Args('_id') _id: string): Promise<FlashSale> {
 		const data = await this.servicesService.send('getFlashSaveById', _id)
 		console.log('data: ', data)
 		console.log(`id : ${_id}`)
@@ -37,10 +37,10 @@ export class FlashSaveResolver {
 
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => FlashSave)
+	@Mutation(() => FlashSale)
 	async createFlashSave(
-		@Args('input') input: CreateFlashSaveInput
-	): Promise<FlashSave> {
+		@Args('input') input: CreateFlashSaleInput
+	): Promise<FlashSale> {
 		// console.log(`function:createFlashSave`);
 		console.log(input)
 		const data = await this.servicesService.send('createFlashSave', input)
@@ -51,11 +51,11 @@ export class FlashSaveResolver {
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
-	@Mutation(() => FlashSave)
+	@Mutation(() => FlashSale)
 	async updateFlashSave(
 		@Args('_id') _id: string,
-		@Args('input') input: UpdateFlashSaveInput
-	): Promise<FlashSave> {
+		@Args('input') input: UpdateFlashSaleInput
+	): Promise<FlashSale> {
 		const messageData = { _id, ...input }
 		const data = await this.servicesService.send('updateFlashSave', messageData)
 		return data

@@ -1,10 +1,12 @@
 input CreateConversationInput {
 	userId: ID!
 	participantId: ID!
+	name: String
 }
 
 input UpdateConversationInput {
-	lastMessageId: ID!
+	name: String
+	isBlocked: Boolean
 }
 
 type Conversation {
@@ -12,11 +14,11 @@ type Conversation {
 	userId: ID!
 	participantId: ID!
 	name: String
-	lastMessage: Message
+	lastMessageId: ID!
 	messages: [Message]
 	isBlocked: Boolean!
 	createdAt: String!	
-	deletedAt: String!
+	deletedAt: String
 }
 
 type Query {

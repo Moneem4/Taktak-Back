@@ -37,19 +37,15 @@ export class StoryResolver {
     //----------------------------------------------------------------------------------------------- 
     
     @Query(() => Story)
-	async storiesByUserId(@Args('_id') _id: string): Promise<Story> {
-		const data = await this.postMCS.send('getStoryByUserId', _id)
-		console.log('data: ', data)
-		console.log(`id : ${_id}`)
+	async storiesByUserId(@Args('userId') userId: string): Promise<Story> {
+		const data = await this.postMCS.send('getStoriesByUserId', userId);		
 		return data;
 	}
 	//----------------------------------------------------------------------------------------------- 
 
-
 	@Mutation(() => Story)
 	async createStory(@Args('input') input: CreateStoryInput): Promise<Story> {
-		//console.log(`function:createStory`);
-		console.log(input)
+		//console.log(`function:createStory`);		
 		const data = await this.postMCS.send('createStory', input)
 		console.log(`function:createStory, res: ${data}`)
 		return data;

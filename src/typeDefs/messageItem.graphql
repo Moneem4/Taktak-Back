@@ -7,14 +7,18 @@ enum MessageItemType {
 }
 
 input CreateMessageItemInput {
+	messageId: ID!
 	itemType: MessageItemType!
 	itemPath: String
 }
 
 type MessageItem {
 	_id: ID!
+	messageId: ID!
 	itemType: MessageItemType!
 	itemPath: String
+	createdAt: String!	
+	deletedAt: String
 }
 
 type Query {
