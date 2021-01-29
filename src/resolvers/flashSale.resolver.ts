@@ -8,15 +8,15 @@ import { Logger } from '@nestjs/common'
 import { ApolloError } from 'apollo-server-express'
 import { ServiceMCS } from 'config/microservice/service/serviceMCS.service'
 
-@Resolver('FlashSave')
+@Resolver('FlashSale')
 export class FlashSaleResolver {
 	constructor(private readonly servicesService: ServiceMCS) {
-		console.log('FlashSave.resolver')
+		console.log('FlashSale.resolver')
 	}
 
 	@Query()
-	async getFlashSaves() {
-		const data = await this.servicesService.send('getFlashSaves', {})
+	async getFlashSales() {
+		const data = await this.servicesService.send('getFlashSales', {})
 
 		return data
 	}
@@ -24,12 +24,12 @@ export class FlashSaleResolver {
 	// -------------------------------------------------------------------------------------------------------- finished
 
 	@Query(() => FlashSale)
-	async getFlashSaveById(@Args('_id') _id: string): Promise<FlashSale> {
-		const data = await this.servicesService.send('getFlashSaveById', _id)
+	async getFlashSaleById(@Args('_id') _id: string): Promise<FlashSale> {
+		const data = await this.servicesService.send('getFlashSaleById', _id)
 		console.log('data: ', data)
 		console.log(`id : ${_id}`)
 		if (data == null) {
-			throw new ApolloError('FlashSave déja supprimé +++++')
+			throw new ApolloError('FlashSale déja supprimé +++++')
 		} else {
 			return data
 		}
@@ -38,35 +38,35 @@ export class FlashSaleResolver {
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => FlashSale)
-	async createFlashSave(
+	async createFlashSale(
 		@Args('input') input: CreateFlashSaleInput
 	): Promise<FlashSale> {
-		// console.log(`function:createFlashSave`);
+		// console.log(`function:createFlashSale`);
 		console.log(input)
-		const data = await this.servicesService.send('createFlashSave', input)
-		console.log(`function:createFlashSave, res: ${data}`)
+		const data = await this.servicesService.send('createFlashSale', input)
+		console.log(`function:createFlashSale, res: ${data}`)
 		if(data==null)
-		{	throw new ApolloError('verifier le service de flashsave,peut etre n exisete pas')}
+		{	throw new ApolloError('verifier le service de FlashSale,peut etre n exisete pas')}
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => FlashSale)
-	async updateFlashSave(
+	async updateFlashSale(
 		@Args('_id') _id: string,
 		@Args('input') input: UpdateFlashSaleInput
 	): Promise<FlashSale> {
 		const messageData = { _id, ...input }
-		const data = await this.servicesService.send('updateFlashSave', messageData)
+		const data = await this.servicesService.send('updateFlashSale', messageData)
 		return data
 	}
 	// ----------------------------------------------------------------------------------------------- finished
 
 	@Mutation(() => Boolean)
-	async deleteFlashSave(@Args('_id') _id: string): Promise<boolean> {
-		console.log(`function:deleteFlashSave, input: ${_id}`)
+	async deleteFlashSale(@Args('_id') _id: string): Promise<boolean> {
+		console.log(`function:deleteFlashSale, input: ${_id}`)
 		
-		const data = await this.servicesService.send('deleteFlashSave', _id)
+		const data = await this.servicesService.send('deleteFlashSale', _id)
 		if(data==false)
 		{	throw new ApolloError('entity already deleted')}
 		return data
