@@ -39,7 +39,7 @@ type Service {
 	filter: String!
 	serviceType: ServiceType!
 	wastedFoods:[WastedFood]
-	flashSaves:[FlashSave]
+	flashSales:[FlashSale]
 	eatwithStrangers:[EatWithStranger]
 	validation:Boolean!
 	serviceAccess: Access!

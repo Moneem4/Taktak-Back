@@ -8,7 +8,7 @@ type Message {
 	_id: ID!
 	text: String
 	conversationId: ID!
-	createdBy: User
+	createdBy: ID!
 	createdAt: String!
 	updatedAt: String
 	deletedAt: String
