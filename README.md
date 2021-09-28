@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nestjs GraphQL Best Practice
 
 > ### NestJS (Express + Typeorm) codebase containing real world examples (CRUD, auth, advanced patterns, etc).
@@ -305,3 +306,6 @@ Our contributors are working on this section. [Would you like to join?](https://
 [✔️] 7.1. Prefer native JS methods over user-land utils like Lodash
 
 [❔] 7.2. Use Fastify in place of Express
+=======
+# Taktak-Back
+>>>>>>> 8b080201c60cb5abb5f4f8c38aa954dfbfc949f1
