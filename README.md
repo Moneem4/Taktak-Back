@@ -61,31 +61,8 @@
 
 ## Usage
 
-1. Clone repository
 
-```
-  git clone https://github.com/chnirt/nestjs-graphql-best-practice.git
-```
-
-2. Cd into directory
-
-```
-  cd nestjs-graphql-best-practice/
-```
-
-3. Create .env
-
-```
-  touch .env
-```
-
-4. Add to .env
-
-```
-  PORT=<yourport>
-```
-
-5. Install dependencies using npm
+. Install dependencies using npm
 
 ```
   npm i
